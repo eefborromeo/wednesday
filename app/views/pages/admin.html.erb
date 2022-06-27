@@ -1,0 +1,10 @@
+<div> This is admin page </div>
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+
+<% @users.each do |user| %>
+  <div>
+    <%= user.email %>
+    <br>
+    <%= user.approved %>
+  </div>
+<% end %>
