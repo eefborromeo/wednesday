@@ -9,20 +9,36 @@
 
 admin = User.create(
   email: 'wednestrade-admin@wednestrade.com',
-  password: 'W3dnesday@trade',
-  password_confirmation: 'W3dnesday@trade',
-  admin: true
+  password: 'wedtrade',
+  password_confirmation: 'wedtrade',
+  admin: true,
+  approved: true,
+  money: 0
 )
 
 admin.skip_confirmation!
 admin.save
 
-trader = User.create(
-  email: 'wednestrade-trader@wednestrade.com',
-  password: 'W3dnesday@trade',
-  password_confirmation: 'W3dnesday@trade',
-  admin: false
+trader1 = User.create(
+  email: 'wednestrade-trader1@wednestrade.com',
+  password: 'wedtrade',
+  password_confirmation: 'wedtrade',
+  admin: false,
+  approved: true,
+  money: 10000
 )
 
-trader.skip_confirmation!
-trader.save
+trader1.skip_confirmation!
+trader1.save
+
+trader2 = User.create(
+  email: 'wednestrade-trader2@wednestrade.com',
+  password: 'wedtrade',
+  password_confirmation: 'wedtrade',
+  admin: false,
+  approved: false,
+  money: 0
+)
+
+trader2.skip_confirmation!
+trader2.save
