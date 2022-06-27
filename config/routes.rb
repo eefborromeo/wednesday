@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   }
   
   root to: 'pages#index'
+  get '/admin', action: :admin, controller: 'pages'
 end
