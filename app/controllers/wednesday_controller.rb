@@ -1,6 +1,4 @@
-class PagesController < ApplicationController
-    before_action :check_admin, only: [:admin]
-
+class WednesdayController < ApplicationController
     def index
         @user = current_user
         @microsoft = Asset.get_latest_price('MSFT')
@@ -11,16 +9,4 @@ class PagesController < ApplicationController
         @alphabet = Asset.get_latest_price('GOOG')
         @jollibee = Asset.get_latest_price('JBFCF')
     end
-
-    def admin
-        @users = User.all.where(admin: false)
-    end
-    
-    private
-
-    def check_admin
-        return if current_user.admin?
-        redirect_to root_path, notice: 'Access Denied'
-    end
-
 end
