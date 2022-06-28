@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     confirmations: 'confirmations'
   }
   
-  root to: 'pages#index'
-  get '/admin', action: :admin, controller: 'pages'
+  root to: 'wednesday#index'
+  namespace :admin do
+    resources :wednesday, only: [:index]
+  end
 end
