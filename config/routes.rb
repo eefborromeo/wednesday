@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   
   root to: 'wednesday#index'
   namespace :admin do
-    resources :wednesday, only: [:index]
+    resources :users
   end
 end
