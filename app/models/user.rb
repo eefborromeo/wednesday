@@ -6,4 +6,12 @@ class User < ApplicationRecord
 
   has_many :transactions
   has_many :asset, through: :transactions
+
+  def approved_status
+    if self.approved?
+      "Approved"
+    else
+      "Not approved"
+    end
+  end
 end
