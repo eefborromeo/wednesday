@@ -1,0 +1,28 @@
+<div> This is admin page </div>
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+  <br>
+  <br>
+  <br>
+<%= search_form_for [:admin, @q] do |f| %>
+  <%= f.label :email_i_cont, 'Search for trader email' %>
+  <br>
+  <%= f.search_field :email_i_cont %>
+  <br>
+  <%= f.check_box :approved_false, {}, 1, nil %>
+  <%= f.label :approved, 'Show pending traders' %>
+  <br>
+  <div class='submit-btn'>
+    <%= f.submit name: '' %>
+  </div>
+<% end %>
+  <br>
+  <br>
+  <br>
+<% @traders.each do |trader| %>
+  <div>
+    <%= trader.email %>
+    <br>
+    <%= trader.approved_status %>
+  </div>
+  <%= link_to 'Show trader', admin_user_path(trader) %>
+<% end %>
