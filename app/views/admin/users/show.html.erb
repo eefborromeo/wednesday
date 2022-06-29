@@ -1,13 +1,17 @@
 <div> This is trader SHOW </div>
-
+<br>
+<br>
 <div> <%= @trader.email %> </div>
-
-
-
+<div> <%= @trader.money %> </div>
 <div> <%= @trader.approved_status %> </div>
-
-<div>
-  <%= form_with model: [:admin, @trader] do |form| %>
+<%= form_with model: [:admin, @trader] do |form| %>
+  <div>
     <%= form.check_box :approved, onchange: "this.form.submit();" %>
-  <% end %>
-</div>
+    <% if @trader.approved? %>
+      <span> This trader is approved. </span>
+    <% else %>
+      <span> Approve this trader? </span>
+    <% end %>
+  </div>
+<% end %>
+<%= link_to "Edit details", edit_admin_user_path %>

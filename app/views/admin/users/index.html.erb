@@ -1,5 +1,6 @@
 <div> This is admin page </div>
 <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<%= link_to "Create trader profile", new_admin_user_path %>
   <br>
   <br>
   <br>
@@ -25,4 +26,6 @@
     <%= trader.approved_status %>
   </div>
   <%= link_to 'Show trader', admin_user_path(trader) %>
+  <br>
+  <br>
 <% end %>
