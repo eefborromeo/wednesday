@@ -1,0 +1,7 @@
+<h1>Form</h1>
+
+<%= form_with model: @asset, url: asset_index_path do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.submit %>
+<% end %>
