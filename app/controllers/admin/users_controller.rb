@@ -18,7 +18,7 @@ class Admin::UsersController < ApplicationController
         @trader = User.new(trader_params)
 
         if @trader.save
-            redirect_to @trader
+            redirect_to admin_users_path
         else
             render :new
         end
@@ -37,7 +37,7 @@ class Admin::UsersController < ApplicationController
 
     def destroy
         @trader.destroy
-        redirect_to admin_wednesday_path
+        redirect_to admin_users_path
     end
 
     private
@@ -52,6 +52,7 @@ class Admin::UsersController < ApplicationController
     end
 
     def trader_params
+        params[:user][:approved] = params[:user] && params[:user][:approved] == '0' ? false : true
         params.require(:user).permit(:email, :password, :password_confirmation, :money, :approved)
     end
 end
