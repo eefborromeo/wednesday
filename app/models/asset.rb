@@ -1,5 +1,6 @@
 class Asset < ApplicationRecord
     belongs_to :user
+    has_many :transactions
 
     def self.iex_api
         IEX::Api::Client.new
