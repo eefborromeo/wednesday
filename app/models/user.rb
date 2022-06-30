@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :transactions
-  has_many :asset, through: :transactions
+  has_many :assets
 
   def approved_status
     if self.approved?
