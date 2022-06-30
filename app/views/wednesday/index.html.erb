@@ -2,10 +2,12 @@
 <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
 
 <div>
-  <%= @user.email %>
-  <br>
-  <%= @user.approved %>
+<%= @user.email %>
+<br>
+<%= @user.approved %>
 </div>
+
+<%= link_to "Add Asset", 'asset/new' %>
 
 <div>
   <h2>Microsoft</h2>
