@@ -1,7 +1,10 @@
-<h1>Form</h1>
-
-<%= form_with model: @asset, url: asset_index_path do |form| %>
-    <%= form.label :name, "Search:" %>
-    <%= form.text_field :name %>
-    <%= form.submit "Search" %>
+<h1>Add Asset</h1>
+<% if current_user.approved %>
+    <%= form_with model: @asset, url: asset_index_path do |form| %>
+        <%= form.label :name, "Search:" %>
+        <%= form.text_field :name %>
+        <%= form.submit "Search" %>
+    <% end %>
+<% else %>
+    <h2>Your account needs to be approved by admin</h2>
 <% end %>
