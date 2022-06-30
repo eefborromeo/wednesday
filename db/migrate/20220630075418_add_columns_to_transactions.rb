@@ -4,6 +4,6 @@ class AddColumnsToTransactions < ActiveRecord::Migration[6.1]
     add_column :transactions, :asset_name, :string
     add_column :transactions, :asset_price, :float
     add_column :transactions, :shares, :float
-    add_column :transactions, :type, :string
+    add_column :transactions, :transaction_type, :string
   end
 end

@@ -1,0 +1,15 @@
+<h1>Admin::Transactions#index</h1>
+<p>Find me in app/views/admin/transactions/index.html.erb</p>
+
+<% @transactions.each do |transaction| %>
+  <h3> <%= transaction.user_email %> </h3>
+  <%= transaction.asset_name %>
+  <%= transaction.company_name %>
+  <%= transaction.asset_price %>
+  <%= transaction.shares %>
+  <%= transaction.asset_price * transaction.shares %>
+  <%= transaction.transaction_type %>
+  <br>
+  <br>
+  <br>
+<% end %>

@@ -42,3 +42,43 @@ trader2 = User.create(
 
 trader2.skip_confirmation!
 trader2.save
+
+trader1asset1 = Asset.create(
+  user_id: trader1.id,
+  asset_name: 'JBCFC',
+  total_shares: 5.0
+)
+
+trader1asset2 = Asset.create(
+  user_id: trader1.id,
+  asset_name: 'MSFT',
+  total_shares: 0
+)
+
+trader2asset1 = Asset.create(
+  user_id: trader2.id,
+  asset_name: 'MSFT',
+  total_shares: 0.5
+)
+
+Transaction.create(
+  user_id: trader1.id,
+  user_email: trader1.email,
+  asset_id: trader1asset1.id,
+  asset_name: 'JBCFC',
+  company_name: 'Jollibee',
+  asset_price: 201.0,
+  shares: 5.0,
+  transaction_type: 'Buy'
+)
+
+Transaction.create(
+  user_id: trader2.id,
+  user_email: trader2.email,
+  asset_id: trader2asset1.id,
+  asset_name: 'MSFT',
+  company_name: 'Microsoft',
+  asset_price: 421.0,
+  shares: 0.5,
+  transaction_type: 'Buy'
+)
