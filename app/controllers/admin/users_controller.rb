@@ -50,9 +50,9 @@ class Admin::UsersController < ApplicationController
     def set_trader
         @trader = User.find(params[:id])
     end
-
+    
     def trader_params
-        params[:user][:approved] = params[:user] && params[:user][:approved] == '0' ? false : true
+        params[:user][:approved] = true
         params.require(:user).permit(:email, :password, :password_confirmation, :money, :approved)
     end
 end
