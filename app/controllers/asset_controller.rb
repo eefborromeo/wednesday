@@ -1,10 +1,14 @@
 class AssetController < ApplicationController
     before_action :set_asset, only: [:show]
 
-    def show
-        @asset_price = Asset.get_latest_price(@asset.name)
-        @asset_company_name = Asset.get_company_name(@asset.name)
+    def index
+        @assets = Asset.where(user_id: current_user.id)
     end
+    
+    # def show
+    # @asset_price = Asset.get_latest_price(@asset.name)
+    # @asset_company_name = Asset.get_company_name(@asset.name)
+    # end
 
     def new
         @asset = Asset.new
@@ -14,7 +18,7 @@ class AssetController < ApplicationController
         @asset = Asset.new(asset_params)
 
         if @asset.save
-            redirect_to asset_path(@asset.name)
+            redirect_to asset_index_path
         else
             render :new
         end
@@ -27,6 +31,6 @@ class AssetController < ApplicationController
     end
 
     def asset_params
-        params.require(:asset).permit(:name)
+        params.require(:asset).permit(:user_id, :asset_name)
     end
 end

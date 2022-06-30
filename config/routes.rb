@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
   
   root to: 'wednesday#index'
-  resources :asset, except: [:index, :destroy]
+  resources :asset, except: [:destroy]
 
   namespace :admin do
     resources :users
