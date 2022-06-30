@@ -1,4 +1,6 @@
 <h1>Index</h1>
 <% @assets.each do |asset| %>
-    <%= asset.asset_name %>
+    <div>
+        <h2><%= link_to asset.asset_name, asset_path(asset.asset_name) %></h2>
+        <%= link_to "Buy Asset", new_transaction_path %>
 <% end %>

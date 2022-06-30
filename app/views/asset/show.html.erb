@@ -1,10 +1,5 @@
 <h1>Show</h1>
-<h2><%= @asset.name %></h2>
+<h2><%= @asset.asset_name %></h2>
 <h2><%=  @asset_company_name %></h2>
 <h2><%= @asset_price %></h2>
-
-<%= form_with do |form| %>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-    <%= form.submit %>
-<% end %>
+<%= link_to 'Buy Assets', new_transaction_path %>
