@@ -2,4 +2,4 @@
 <h2><%= @asset.asset_name %></h2>
 <h2><%=  @asset_company_name %></h2>
 <h2><%= @asset_price %></h2>
-<%= link_to 'Buy Assets', new_transaction_path %>
+<%= link_to 'Buy Assets', new_transaction_path(@asset.asset_name) %>
