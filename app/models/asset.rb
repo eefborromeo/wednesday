@@ -9,4 +9,8 @@ class Asset < ApplicationRecord
     def self.get_latest_price(company)
         Asset.iex_api.quote(company).latest_price
     end
+
+    def self.get_company_name(company)
+        Asset.iex_api.company(company).company_name
+    end
 end

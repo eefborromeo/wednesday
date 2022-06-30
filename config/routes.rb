@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   }
   
   root to: 'wednesday#index'
+  resources :asset, except: [:index, :destroy]
+
   namespace :admin do
     resources :users
   end
