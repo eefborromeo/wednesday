@@ -1,0 +1,27 @@
+<%= form_with model: [:admin, trader] do |form| %>
+
+  <div> :email, :password, :money, :approved </div>
+
+  <div>
+    <%= form.label "Email" %>
+    <br>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label "Password" %>
+    <br>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label "Balance" %>
+    <br>
+    <%= form.number_field :money, step: :any %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>
