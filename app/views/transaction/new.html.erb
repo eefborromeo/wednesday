@@ -1,1 +1,8 @@
 <h1>Transaction Buy</h1>
+<h2><%= @asset.asset_name %></h2>
+<h2><%= @lastest_price %></h2>
+<%= form_with model: @transaction, url: transaction_index_path do |form| %>
+    <%= form.label :shares, "Shares:" %>
+    <%= form.text_field :shares %>
+    <%= form.submit "Buy Assets" %>
+<% end %>
