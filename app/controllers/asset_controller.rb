@@ -6,8 +6,8 @@ class AssetController < ApplicationController
     end
     
     def show
-    @asset_price = Asset.get_latest_price(@asset.asset_name)
-    @asset_company_name = Asset.get_company_name(@asset.asset_name)
+        @asset_price = Asset.get_latest_price(@asset.asset_name)
+        @asset_company_name = Asset.get_company_name(@asset.asset_name)
     end
 
     def new
