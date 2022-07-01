@@ -20,7 +20,7 @@ class AssetController < ApplicationController
         if @asset.save
             redirect_to asset_index_path
         else
-            render :new
+            redirect_to root_path, notice: "This asset already exists in your portfolio"
         end
     end
 

@@ -2,6 +2,8 @@ class Asset < ApplicationRecord
     belongs_to :user
     has_many :transactions
 
+    validates :asset_name, :uniqueness => {:scope => :user_id}
+
     def self.iex_api
         IEX::Api::Client.new
     end
