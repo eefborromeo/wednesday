@@ -1,0 +1,13 @@
+<h1>Transactions</h1>
+<% @transactions.each do |transaction| %>
+    <ul>
+        <li>User Id: <%= transaction.user_id %></li>
+        <li>Company Name: <%= transaction.company_name %></li>
+        <li>Asset Name: <%= transaction.asset_name %></li>
+        <li>Asset Price: <%= transaction.asset_price %></li>
+        <li>Shares: <%= transaction.shares %></li>
+        <li>Transaction Type: <%= transaction.transaction_type %></li>
+        <li>Total: <%= transaction.asset_price * transaction.shares %></li>
+        <li>User email: <%= transaction.user_email %></li>
+    </ul>
+<% end %>

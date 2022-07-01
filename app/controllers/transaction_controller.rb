@@ -1,9 +1,14 @@
 class TransactionController < ApplicationController
     before_action :approved
 
+    def index 
+        @transactions = Transaction.all.where(user_id: current_user.id)
+    end
+
     def new
         @asset = Asset.find_by(asset_name: params[:id])
-        @lastest_price = Asset.get_latest_price(@asset.asset_name)
+        @latest_price = Asset.get_latest_price(@asset.asset_name)
+        @company_name = Asset.get_company_name(@asset.asset_name)
         @transaction = Transaction.new
     end
 
@@ -20,7 +25,11 @@ class TransactionController < ApplicationController
     private
 
     def transaction_params
-        params.require(:transaction).permit(:shares)
+        params[:transaction][:user_id] = current_user.id
+        params[:transaction][:user_email] = current_user.email
+        params[:transaction][:transaction_type] = 'buy'
+        
+        params.require(:transaction).permit(:user_id, :asset_id, :company_name, :asset_name, :asset_price, :transaction_type, :user_email, :shares)
     end
 
     def approved
