@@ -1,0 +1,11 @@
+<h1>Sell Assets</h1>
+<ul>
+    <li><%= @company_name %></li>
+    <li><%= @asset.asset_name %></li>
+    <li><%= @asset.total_shares %></li>
+</ul>
+<%= form_with model: @asset, url: asset_path(@asset.asset_name), method: :put do |form| %>
+    <%= form.label :shares, "Shares:" %>
+    <%= form.text_field :shares %>
+    <%= form.submit "Sell Shares" %>
+<% end %>
