@@ -1,17 +1,17 @@
 class TransactionController < ApplicationController
     before_action :approved
+    before_action :set_asset, only: [:new, :create]
 
     def index 
         @transactions = Transaction.all.where(user_id: current_user.id)
     end
 
     def new
-        @asset = Asset.find_by(asset_name: params[:id])
         @latest_price = Asset.get_latest_price(@asset.asset_name)
         @company_name = Asset.get_company_name(@asset.asset_name)
         @transaction = Transaction.new
     end
-
+    
     def create
         @transaction = Transaction.new(transaction_params)
         
@@ -23,6 +23,10 @@ class TransactionController < ApplicationController
     end
 
     private
+
+    def set_asset
+        @asset = Asset.find_by(asset_name: params[:id], user_id: current_user.id)
+    end
 
     def transaction_params
         params[:transaction][:user_id] = current_user.id
