@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :transaction, only: [:index, :create]
   get '/transaction/new/:id' => 'transaction#new', as: 'new_transaction'
+  
+  get '/sell/new/:id' => 'sell#new', as: 'new_sell'
 
   namespace :admin do
     resources :users
