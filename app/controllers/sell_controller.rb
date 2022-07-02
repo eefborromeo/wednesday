@@ -1,4 +1,6 @@
 class SellController < ApplicationController
+    before_action :approved
+    
     def new
         @asset = Asset.find_by(asset_name: params[:id], user_id: current_user.id)
         @user = current_user.id
@@ -25,5 +27,12 @@ class SellController < ApplicationController
         params[:transaction][:transaction_type] = 'sell'
         
         params.require(:transaction).permit(:user_id, :asset_id, :company_name, :asset_name, :asset_price, :transaction_type, :user_email, :shares)
+    end
+
+    def approved
+        if !current_user.approved
+            flash[:notice] = "Your account must be approved to access this area."
+            redirect_to root_path unless current_user.approved?
+        end
     end
 end
