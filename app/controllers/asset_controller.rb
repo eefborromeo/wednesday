@@ -27,7 +27,7 @@ class AssetController < ApplicationController
     private
 
     def set_asset
-        @asset = Asset.find_by!(asset_name: params[:id])
+        @asset = Asset.find_by!(asset_name: params[:id], user_id: current_user.id)
     end
 
     def asset_params
