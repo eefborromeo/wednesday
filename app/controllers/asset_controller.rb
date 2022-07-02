@@ -5,10 +5,10 @@ class AssetController < ApplicationController
         @assets = Asset.where(user_id: current_user.id)
     end
     
-    # def show
-    # @asset_price = Asset.get_latest_price(@asset.name)
-    # @asset_company_name = Asset.get_company_name(@asset.name)
-    # end
+    def show
+        @asset_price = Asset.get_latest_price(@asset.asset_name)
+        @asset_company_name = Asset.get_company_name(@asset.asset_name)
+    end
 
     def new
         @asset = Asset.new
@@ -20,14 +20,14 @@ class AssetController < ApplicationController
         if @asset.save
             redirect_to asset_index_path
         else
-            render :new
+            redirect_to root_path, notice: "This asset already exists in your portfolio"
         end
     end
 
     private
 
     def set_asset
-        @asset = Asset.find_by!(name: params[:id])
+        @asset = Asset.find_by!(asset_name: params[:id])
     end
 
     def asset_params

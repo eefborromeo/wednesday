@@ -1,11 +1,7 @@
 <h1>Add Asset</h1>
-<% if current_user.approved %>
-    <%= form_with model: @asset, url: asset_index_path do |form| %>
-        <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.label :name, "Search:" %>
-        <%= form.text_field :asset_name %>
-        <%= form.submit "Search" %>
-    <% end %>
-<% else %>
-    <h2>Your account needs to be approved by admin</h2>
+<%= form_with model: @asset, url: asset_index_path do |form| %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.label :name, "Search:" %>
+    <%= form.text_field :asset_name %>
+    <%= form.submit "Search" %>
 <% end %>
