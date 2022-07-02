@@ -18,6 +18,7 @@ class Admin::UsersController < ApplicationController
         @trader = User.new(trader_params)
 
         if @trader.save
+            send_approved_email(@trader)
             redirect_to admin_users_path
         else
             render :new
@@ -29,6 +30,8 @@ class Admin::UsersController < ApplicationController
 
     def update
         if @trader.update(trader_params)
+            # User.send_approved_email(params[:email])
+            send_approved_email(@trader)
             redirect_to admin_user_path(@trader)
         else
             render :edit
@@ -54,5 +57,11 @@ class Admin::UsersController < ApplicationController
     def trader_params
         params[:user][:approved] = true
         params.require(:user).permit(:email, :password, :password_confirmation, :money, :approved)
+    end
+
+    def send_approved_email(trader)
+        if trader.approved?
+            ApprovalMailer.with(email: @trader.email).trader_approved.deliver_later
+        end
     end
 end
