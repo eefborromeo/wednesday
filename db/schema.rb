@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_06_30_115324) do
     t.float "asset_price"
     t.float "shares"
     t.string "transaction_type"
-    t.string "user_email"
+    t.string "user_email", null: false
     t.index ["asset_id"], name: "index_transactions_on_asset_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end

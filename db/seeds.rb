@@ -45,7 +45,7 @@ trader2.save
 
 trader1asset1 = Asset.create(
   user_id: trader1.id,
-  asset_name: 'JBCFC',
+  asset_name: 'JBFCF',
   total_shares: 5.0
 )
 
@@ -65,7 +65,7 @@ Transaction.create(
   user_id: trader1.id,
   user_email: trader1.email,
   asset_id: trader1asset1.id,
-  asset_name: 'JBCFC',
+  asset_name: 'JBFCF',
   company_name: 'Jollibee',
   asset_price: 201.0,
   shares: 5.0,

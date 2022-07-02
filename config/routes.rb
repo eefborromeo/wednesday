@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   root to: 'wednesday#index'
   resources :asset, except: [:destroy]
 
+  resources :transaction, only: [:index, :create]
+  get '/transaction/new/:id' => 'transaction#new', as: 'new_transaction'
+  
+  resources :sell, only: [:create]
+  get '/sell/new/:id' => 'sell#new', as: 'new_sell'
+
   namespace :admin do
     resources :users
   end
