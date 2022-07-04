@@ -10,6 +10,17 @@
 <%= link_to "Add Asset", new_asset_path %>
 
 <div>
+  <%= link_to 'Settings', edit_user_path(current_user) %>
+  <%= link_to 'Edit balance', edit_user_money_path(current_user) %>
+</div>
+<br>
+<br>
+
+<div>
+  <%= @user.money %>
+</div>
+
+<div>
   <h2>Microsoft</h2>
   <%= @microsoft %>
   <h2>Meta</h2>
