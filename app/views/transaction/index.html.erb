@@ -2,6 +2,10 @@
 <%= link_to 'Home', root_path %>
 <%= link_to 'My portfolio', asset_index_path %>
 
+<% if @transactions.count == 0 %>
+    <div> There's nothing here </div>
+<% end %>
+
 <% @transactions.each do |transaction| %>
     <ul>
         <li>User Id: <%= transaction.user_id %></li>
@@ -13,4 +17,5 @@
         <li>Total: <%= transaction.asset_price * transaction.shares %></li>
         <li>User email: <%= transaction.user_email %></li>
     </ul>
+    <%= link_to 'Delete transaction', transaction_path(transaction.id), method: :delete, data: {confirm: 'Continue to delete this transaction?'} %>
 <% end %>
