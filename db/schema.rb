@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2022_06_30_115324) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean "approved", default: false, null: false
-    t.float "money", default: 0.0
+    t.float "money", default: 10000.0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
