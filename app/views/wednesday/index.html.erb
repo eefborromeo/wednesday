@@ -18,6 +18,7 @@
 <div>
   <%= link_to 'Edit your info', edit_user_path(current_user) %>
   <%= link_to 'Edit balance', edit_user_money_path(current_user) %>
+  <%= link_to 'Delete account', user_registration_path, method: :delete, data: {confirm: 'WARNING! Continue to destroy your account? This will delete all your information.'} %>
 </div>
 <br>
 <br>
