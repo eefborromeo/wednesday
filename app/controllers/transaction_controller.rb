@@ -3,7 +3,7 @@ class TransactionController < ApplicationController
 
     def index 
         approved(root_path)
-        @transactions = Transaction.all.where(user_id: current_user.id)
+        @transactions = current_user.transactions
     end
 
     def new

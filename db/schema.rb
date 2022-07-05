@@ -26,16 +26,15 @@ ActiveRecord::Schema.define(version: 2022_06_30_115324) do
 
   create_table "transactions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "asset_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "company_name"
+    t.bigint "asset_id"
     t.string "asset_name"
     t.float "asset_price"
     t.float "shares"
     t.string "transaction_type"
     t.string "user_email", null: false
-    t.index ["asset_id"], name: "index_transactions_on_asset_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -59,6 +58,5 @@ ActiveRecord::Schema.define(version: 2022_06_30_115324) do
   end
 
   add_foreign_key "assets", "users"
-  add_foreign_key "transactions", "assets"
   add_foreign_key "transactions", "users"
 end
