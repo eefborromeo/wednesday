@@ -3,7 +3,7 @@ class TransactionController < ApplicationController
 
     def index 
         approved(root_path)
-        @transactions = Transaction.all.where(user_id: current_user.id)
+        @transactions = current_user.transactions
     end
 
     def new
@@ -21,6 +21,12 @@ class TransactionController < ApplicationController
         else
             redirect_to asset_index_path, alert: "#{@transaction.errors[:base][0]}"
         end
+    end
+
+    def destroy
+        @transaction = Transaction.find(params[:id])
+        @transaction.destroy
+        redirect_to transaction_index_path
     end
 
     private
