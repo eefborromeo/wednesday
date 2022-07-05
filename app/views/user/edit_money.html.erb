@@ -1,0 +1,14 @@
+<h1>User#edit</h1>
+<p>Find me in app/views/user/edit.html.erb</p>
+
+<%= form_with model: @user, url: user_money_path do |form| %>
+  <div>
+    <%= form.label "Balance" %>
+    <br>
+    <%= form.number_field :money, step: :any %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
