@@ -5,14 +5,19 @@
 <%= current_user.money %>
 <br>
 <br>
+<%= link_to "Add Asset", new_asset_path %>
+<% if @assets.count == 0 %>
+    <div> There's nothing here </div>
+<% end %>
+
 <% @assets.each do |asset| %>
     <div>
         <h2><%= link_to asset.asset_name, asset_path(asset.asset_name) %></h2>
         <%= asset.total_shares %>
         <br>
-        <%= link_to "Buy Asset", new_transaction_path(asset.asset_name) %>
+        <%= link_to "Buy Shares", new_transaction_path(asset.asset_name) %>
         <% if asset.total_shares > 0 %>
-            <%= link_to "Sell Asset", new_sell_path(asset.asset_name) %>
+            <%= link_to "Sell Shares", new_sell_path(asset.asset_name) %>
         <% end %>
     </div>
 <% end %>
