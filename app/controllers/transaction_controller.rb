@@ -18,7 +18,7 @@ class TransactionController < ApplicationController
         if @transaction.save
             redirect_to transaction_index_path
         else
-            render :new
+            redirect_to asset_index_path, alert: "#{@transaction.errors[:base][0]}"
         end
     end
 
