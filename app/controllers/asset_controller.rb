@@ -2,7 +2,7 @@ class AssetController < ApplicationController
     before_action :set_asset, only: [:show]
 
     def index
-        @assets = Asset.where(user_id: current_user.id)
+        @assets = current_user.assets
     end
     
     def show
@@ -20,7 +20,7 @@ class AssetController < ApplicationController
         if @asset.save
             redirect_to asset_index_path
         else
-            redirect_to root_path, notice: "This asset already exists in your portfolio"
+            redirect_to asset_index_path, notice: "This asset already exists in your portfolio"
         end
     end
 
