@@ -1,6 +1,8 @@
 <h1>User#edit</h1>
 <p>Find me in app/views/user/edit.html.erb</p>
 
+<%= link_to 'Home', root_path %>
+
 <%= form_with model: @user do |form| %>
   <div>
     <%= form.label "Email" %>
@@ -15,6 +17,6 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Update user info" %>
   </div>
 <% end %>

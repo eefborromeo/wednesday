@@ -1,12 +1,13 @@
 class TransactionController < ApplicationController
-    before_action :approved
     before_action :set_asset, only: [:new, :create]
 
     def index 
+        approved(root_path)
         @transactions = Transaction.all.where(user_id: current_user.id)
     end
 
     def new
+        approved(asset_index_path)
         @latest_price = Asset.get_latest_price(@asset.asset_name)
         @company_name = Asset.get_company_name(@asset.asset_name)
         @transaction = Transaction.new
@@ -36,10 +37,10 @@ class TransactionController < ApplicationController
         params.require(:transaction).permit(:user_id, :asset_id, :company_name, :asset_name, :asset_price, :transaction_type, :user_email, :shares)
     end
 
-    def approved
+    def approved(page)
         if !current_user.approved
             flash[:notice] = "Your account must be approved to access this area."
-            redirect_to root_path unless current_user.approved?
+            redirect_to page unless current_user.approved?
         end
     end
 end

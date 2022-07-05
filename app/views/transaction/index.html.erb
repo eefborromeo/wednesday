@@ -1,5 +1,7 @@
 <h1>Transactions</h1>
+<%= link_to 'Home', root_path %>
 <%= link_to 'My portfolio', asset_index_path %>
+
 <% @transactions.each do |transaction| %>
     <ul>
         <li>User Id: <%= transaction.user_id %></li>
