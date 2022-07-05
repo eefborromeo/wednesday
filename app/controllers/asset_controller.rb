@@ -1,5 +1,5 @@
 class AssetController < ApplicationController
-    before_action :set_asset, only: [:show]
+    before_action :set_asset, only: [:show, :destroy]
 
     def index
         @assets = current_user.assets
@@ -22,6 +22,11 @@ class AssetController < ApplicationController
         else
             redirect_to asset_index_path, notice: "This asset already exists in your portfolio"
         end
+    end
+
+    def destroy
+        @asset.destroy
+        redirect_to asset_index_path
     end
 
     private
