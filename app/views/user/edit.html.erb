@@ -20,3 +20,5 @@
     <%= form.submit "Update user info" %>
   </div>
 <% end %>
+
+<%= link_to 'Delete account', user_registration_path, method: :delete, data: {confirm: 'WARNING! Continue to destroy your account? This will delete all your information.'} %>
