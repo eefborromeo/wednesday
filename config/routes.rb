@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :asset
 
-  resources :transaction, only: [:index, :create, :destroy]
+  resources :transaction, only: [:index, :create]
   get '/transaction/new/:id' => 'transaction#new', as: 'new_transaction'
   
   resources :sell, only: [:create]

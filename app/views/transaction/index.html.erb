@@ -17,5 +17,4 @@
         <li>Total: <%= transaction.asset_price * transaction.shares %></li>
         <li>User email: <%= transaction.user_email %></li>
     </ul>
-    <%= link_to 'Delete transaction', transaction_path(transaction.id), method: :delete, data: {confirm: 'Continue to delete this transaction?'} %>
 <% end %>

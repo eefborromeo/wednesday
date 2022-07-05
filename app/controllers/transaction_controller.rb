@@ -23,12 +23,6 @@ class TransactionController < ApplicationController
         end
     end
 
-    def destroy
-        @transaction = Transaction.find(params[:id])
-        @transaction.destroy
-        redirect_to transaction_index_path
-    end
-
     private
 
     def set_asset
