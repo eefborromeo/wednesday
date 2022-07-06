@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-zinc-800 text-white h-full">
   <head>
     <title>Wednesday</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,9 +11,25 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="py-5">
+  <div class="grid grid-cols-12 gap-3">
+      <header class="col-start-2 col-end-12 flex justify-between items-center py-5">
+        <%= link_to "wednesday", root_path, class: "text-3xl text-amber-500" %>
+        <div class="flex gap-5">
+          <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        </div>
+      </header>
+      <ul class="col-start-1 col-end-4 flex flex-col pt-10 font-light">
+        <li class="py-3 mb-5 pl-20 <%=active_class("wednesday") %>"><%= link_to "Dashboard", root_path, class: "text-3xl block" %></li>
+        <li class="py-3 mb-5 pl-20 <%=active_class("asset") %>"><%= link_to "Portfolio", asset_index_path, class: "text-3xl block" %></li>
+        <li class="py-3 mb-5 pl-20 <%=active_class("transaction") %>"><%= link_to "Transactions", transaction_index_path, class: "text-3xl" %></li>
+      </ul>
+      <div class="col-span-8 ">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
