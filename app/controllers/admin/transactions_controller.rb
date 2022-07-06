@@ -1,5 +1,6 @@
 class Admin::TransactionsController < ApplicationController
   def index
-    @transactions = Transaction.all
+    @q = Transaction.all.ransack(params[:q])
+    @transactions = @q.result.order(created_at: :desc)
   end
 end
