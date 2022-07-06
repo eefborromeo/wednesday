@@ -7,11 +7,17 @@ class User < ApplicationRecord
   has_many :transactions, dependent: :destroy
   has_many :assets, dependent: :destroy
 
+  after_commit :send_approval_email
+
   def approved_status
     if self.approved?
       "Approved"
     else
       "Not approved"
     end
+  end
+
+  def send_approval_email
+    ApprovalMailer.trader_approved(self).deliver_later if approved
   end
 end
