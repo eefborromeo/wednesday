@@ -5,8 +5,8 @@ class ApprovalMailer < ApplicationMailer
   #
   #   en.approval_mailer.trader_approved.subject
   #
-  def trader_approved
-    @receiver = params[:email]
+  def trader_approved(user)
+    @receiver = user.email
     @greeting = 'Greetings from Wednesday support team!'
 
     mail to: @receiver, subject: "Trader approval"
