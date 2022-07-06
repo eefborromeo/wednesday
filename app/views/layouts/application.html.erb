@@ -15,16 +15,20 @@
   <div class="grid grid-cols-12 gap-3">
       <header class="col-start-1 pl-20 col-end-12 flex justify-between items-center py-5">
         <%= link_to "wednesday", root_path, class: "text-3xl text-amber-500" %>
-        <div class="flex gap-5">
-          <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-        </div>
+        <% if user_signed_in? %>
+          <div class="flex gap-5">
+            <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+            <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+          </div>
+        <% end %>
       </header>
-      <ul class="col-start-1 col-end-3 flex flex-col pt-10 font-light">
-        <li class="py-3 mb-5 pl-20 <%=active_class("wednesday") %>"><%= link_to "Dashboard", root_path, class: "text-xl block" %></li>
-        <li class="py-3 mb-5 pl-20 <%=active_class("asset") %>"><%= link_to "Portfolio", asset_index_path, class: "text-xl block" %></li>
-        <li class="py-3 mb-5 pl-20 <%=active_class("transaction") %>"><%= link_to "Transactions", transaction_index_path, class: "text-xl" %></li>
-      </ul>
+      <% if user_signed_in? && current_user.admin == false %>
+        <ul class="col-start-1 col-end-3 flex flex-col pt-10 font-light">
+          <li class="py-3 mb-5 pl-20 <%=active_class("wednesday") %>"><%= link_to "Dashboard", root_path, class: "text-xl block" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("asset") %>"><%= link_to "Portfolio", asset_index_path, class: "text-xl block" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("transaction") %>"><%= link_to "Transactions", transaction_index_path, class: "text-xl" %></li>
+        </ul>
+      <% end %>
       <div class="col-start-4 col-span-8">
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
