@@ -1,6 +1,5 @@
 <%= form_with model: [:admin, trader] do |form| %>
-
-  <div> :email, :password, :money, :approved </div>
+  <%= form.hidden_field :approved, value: true %>
 
   <div>
     <%= form.label "Email" %>
