@@ -3,15 +3,45 @@
 
 <%= link_to 'Home', admin_users_path %>
 
-<% @transactions.each do |transaction| %>
-  <h3> <%= transaction.user_email %> </h3>
-  <%= transaction.asset_name %>
-  <%= transaction.company_name %>
-  <%= transaction.asset_price %>
-  <%= transaction.shares %>
-  <%= transaction.asset_price * transaction.shares %>
-  <%= transaction.transaction_type %>
-  <br>
-  <br>
-  <br>
+<%= search_form_for @q, url: admin_transactions_path do |form| %>
+    <div>
+        <%= form.label "Search for user email, company name, asset name, or transaction type" %>
+        <br>
+        <%= form.search_field :user_email_or_company_name_or_asset_name_or_transaction_type_i_cont %>
+        <%= form.submit name: '' %>
+    </div>
 <% end %>
+<br>
+<% if @transactions.count == 0 %>
+    <div> There's nothing here </div>
+<% end %>
+<br>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th> <%= sort_link(@q, :user_email, "User email", default_order: :asc) %> </th>
+            <th> <%= sort_link(@q, :created_at, "Date", default_order: :asc) %> </th>
+            <th> Company Name </th>
+            <th> <%= sort_link(@q, :asset_name, "Asset Name", default_order: :asc) %> </th>
+            <th> Asset Price </th>
+            <th> <%= sort_link(@q, :shares, "Shares", default_order: :asc) %> </th>
+            <th> Total </th>
+            <th> Type </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @transactions.each do |transaction| %>
+            <tr>
+                <td> <%= transaction.user_email %> </td> 
+                <td> <%= transaction.created_at.localtime.strftime('%-B %-d, %Y / %-l%p') %> </td> 
+                <td> <%= transaction.company_name %> </td> 
+                <td> <%= transaction.asset_name %> </td> 
+                <td> <%= transaction.asset_price %> </td> 
+                <td> <%= transaction.shares %> </td> 
+                <td> <%= (transaction.asset_price * transaction.shares).to_d.truncate(2) %> </td>
+                <td> <%= transaction.transaction_type %> </td> 
+            </tr>
+        <% end %>
+    </tbody>
+</table>

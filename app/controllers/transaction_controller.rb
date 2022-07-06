@@ -3,7 +3,8 @@ class TransactionController < ApplicationController
 
     def index 
         approved(root_path)
-        @transactions = current_user.transactions
+        @q = current_user.transactions.ransack(params[:q])
+        @transactions = @q.result.order(created_at: :desc)
     end
 
     def new
