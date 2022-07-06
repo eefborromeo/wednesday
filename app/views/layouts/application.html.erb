@@ -20,12 +20,12 @@
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
         </div>
       </header>
-      <ul class="col-start-1 col-end-4 flex flex-col pt-10 font-light">
-        <li class="py-3 mb-5 pl-20 <%=active_class("wednesday") %>"><%= link_to "Dashboard", root_path, class: "text-3xl block" %></li>
-        <li class="py-3 mb-5 pl-20 <%=active_class("asset") %>"><%= link_to "Portfolio", asset_index_path, class: "text-3xl block" %></li>
-        <li class="py-3 mb-5 pl-20 <%=active_class("transaction") %>"><%= link_to "Transactions", transaction_index_path, class: "text-3xl" %></li>
+      <ul class="col-start-1 col-end-3 flex flex-col pt-10 font-light">
+        <li class="py-3 mb-5 pl-20 <%=active_class("wednesday") %>"><%= link_to "Dashboard", root_path, class: "text-xl block" %></li>
+        <li class="py-3 mb-5 pl-20 <%=active_class("asset") %>"><%= link_to "Portfolio", asset_index_path, class: "text-xl block" %></li>
+        <li class="py-3 mb-5 pl-20 <%=active_class("transaction") %>"><%= link_to "Transactions", transaction_index_path, class: "text-xl" %></li>
       </ul>
-      <div class="col-span-8 ">
+      <div class="col-start-4 col-span-8">
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
         <%= yield %>
