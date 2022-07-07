@@ -3,8 +3,8 @@ class AddColumnsToTransactions < ActiveRecord::Migration[6.1]
     add_column :transactions, :company_name, :string
     add_column :transactions, :asset_id, :bigint
     add_column :transactions, :asset_name, :string
-    add_column :transactions, :asset_price, :float
-    add_column :transactions, :shares, :float
+    add_column :transactions, :asset_price, :decimal
+    add_column :transactions, :shares, :decimal
     add_column :transactions, :transaction_type, :string
   end
 end
