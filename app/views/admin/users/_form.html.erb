@@ -1,26 +1,26 @@
-<%= form_with model: [:admin, trader] do |form| %>
+<%= form_with model: [:admin, trader], class: "bg-black p-3 rounded-lg" do |form| %>
   <%= form.hidden_field :approved, value: true %>
 
   <div>
     <%= form.label "Email" %>
     <br>
-    <%= form.email_field :email %>
+    <%= form.email_field :email, class: "w-1/2 text-black", placeholder: "user@example.com" %>
   </div>
 
   <div>
     <%= form.label "Password" %>
     <br>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, class: "w-1/2 text-black", placeholder: "Password" %>
   </div>
 
   <div>
     <%= form.label "Balance" %>
     <br>
-    <%= form.number_field :money, step: :any %>
+    <%= form.number_field :money, step: :any, class: "w-1/2 text-black" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "bg-amber-500 p-2 mt-3 rounded-md" %>
   </div>
 
 <% end %>
