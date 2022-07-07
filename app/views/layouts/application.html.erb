@@ -36,11 +36,19 @@
           <li class="py-3 mb-5 pl-20"><%= link_to "View as User", root_path, class: "text-xl" %></li>
         </ul>
       <% end %>
-      <div class="col-start-4 col-span-8">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        <%= yield %>
-      </div>
+      <% if user_signed_in? %>
+        <div class="col-start-4 col-span-8">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+      <% else %>
+        <div class="col-start-2 col-span-10">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+      <% end %>
     </div>
   </body>
 </html>
