@@ -9,7 +9,7 @@ class Transaction < ApplicationRecord
 
     def check_transaction_amount_validity
         user = User.find_by(id: user_id)
-        asset = Asset.find_by(id: asset_id, user_id: user_id)
+        asset = Asset.find_by(asset_name: asset_name, user_id: user_id)
         
         if transaction_type == "buy" && user.money < (shares * asset_price)
             errors.add(:base, 'Insufficient balance, please try again later.')
@@ -23,7 +23,7 @@ class Transaction < ApplicationRecord
     end
 
     def update_asset_total_shares
-        @asset = Asset.find_by(id: asset_id, user_id: user_id)
+        @asset = Asset.find_by(asset_name: asset_name, user_id: user_id)
         if transaction_type == "buy"
             @asset.update(total_shares: @asset.total_shares + shares)
         else 
