@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2022_07_06_131000) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "company_name"
-    t.bigint "asset_id"
     t.string "asset_name"
     t.decimal "asset_price"
     t.decimal "shares"

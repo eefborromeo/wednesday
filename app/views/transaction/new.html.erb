@@ -4,7 +4,6 @@
 <h2><%= @company_name %></h2>
 <h2><%= @latest_price %></h2>
 <%= form_with model: @transaction, url: transaction_index_path do |form| %>
-    <%= form.hidden_field :asset_id, value: @asset.id %>
     <%= form.hidden_field :company_name, value: @company_name %>
     <%= form.hidden_field :asset_name, value: @asset.asset_name %>
     <%= form.hidden_field :asset_price, value: @latest_price %>

@@ -36,7 +36,7 @@ class TransactionController < ApplicationController
         params[:transaction][:transaction_total] = params[:transaction][:asset_price].to_d * params[:transaction][:shares].to_d
         params[:transaction][:transaction_type] = 'buy'
         
-        params.require(:transaction).permit(:user_id, :asset_id, :company_name, :asset_name, :asset_price, :transaction_type, :user_email, :shares, :transaction_total)
+        params.require(:transaction).permit(:user_id, :company_name, :asset_name, :asset_price, :transaction_type, :user_email, :shares, :transaction_total)
     end
 
     def approved(page)
