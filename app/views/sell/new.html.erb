@@ -1,16 +1,29 @@
-<h1>Sell Assets</h1>
-<%= link_to 'Back to my portfolio', asset_index_path %>
-<ul>
-    <li><%= @company_name %></li>
-    <li><%= @asset.asset_name %></li>
-    <li><%= @asset.total_shares %></li>
-</ul>
-<%= form_with model: @transaction, url: sell_index_path do |form| %>
-    <%= form.hidden_field :asset_id, value: @asset.id %>
-    <%= form.hidden_field :company_name, value: @company_name %>
-    <%= form.hidden_field :asset_name, value: @asset.asset_name %>
-    <%= form.hidden_field :asset_price, value: @latest_price %>
-    <%= form.label :shares, "Shares:" %>
-    <%= form.text_field :shares %>
-    <%= form.submit "Sell Shares" %>
-<% end %>
+<h2 class="text-3xl text-amber-500 font-bold mb-7">Sell Assets</h2>
+<div class="grid grid-cols-2 grid-rows-2 gap-3">
+    <div class="row-span-2 h-96 bg-black rounded-md p-5 flex flex-col justify-between">
+        <h2 class="text-xl">Asset Information:</h2>
+        <div>
+            <h3 class="text-3xl font-bold"><%= @company_name %></h3>
+            <h3 class="text-2xl"><%= @asset.asset_name %></h3>
+            <h3 class="text-xl">Latest Price: <%= @latest_price %></h3>
+        </div>
+        <%= form_with model: @transaction, url: sell_index_path, class: "flex flex-col text-center gap-2" do |form| %>
+            <%= form.hidden_field :asset_id, value: @asset.id %>
+            <%= form.hidden_field :company_name, value: @company_name %>
+            <%= form.hidden_field :asset_name, value: @asset.asset_name %>
+            <%= form.hidden_field :asset_price, value: @latest_price %>
+            <%= form.label :shares, "Shares:", class: "text-left" %>
+            <%= form.text_field :shares, class: "w-full rounded-md text-black" %>
+            <%= form.submit "Sell Shares", class: "bg-amber-500 p-3 rounded-lg self-end" %>
+        <% end %>
+    </div>
+    <div class="bg-black rounded-md p-5">
+        <h2 class="mb-7">Total Shares</h2>
+        <h3 class="text-6xl text-center"><%= @asset.total_shares %></h3>
+    </div>
+    <div class="bg-black rounded-md p-5">
+        Latest Headlines
+    </div>
+</div>
+
+
