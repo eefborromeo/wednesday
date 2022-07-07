@@ -1,23 +1,26 @@
-<h1>Index</h1>
-<%= link_to 'Home', root_path %>
-<%= link_to 'Transaction history', transaction_index_path %>
-<div> Current Balance </div>
-<%= current_user.money %>
-<br>
-<br>
-<%= link_to "Add Asset", new_asset_path %>
+<div class="flex justify-between items-end mb-5">
+    <h2 class="text-4xl text-amber-500">Portfolio</h2>
+    <%= link_to "+ Add Asset", new_asset_path, class: "text-amber-500" %>
+</div>
+
+<div class="h-96 overflow-scroll">
 <% if @assets.count == 0 %>
     <div> There's nothing here </div>
 <% end %>
 
 <% @assets.each do |asset| %>
-    <div>
-        <h2><%= link_to asset.asset_name, asset_path(asset.asset_name) %></h2>
-        <%= asset.total_shares %>
-        <br>
-        <%= link_to "Buy Shares", new_transaction_path(asset.asset_name) %>
-        <% if asset.total_shares > 0 %>
-            <%= link_to "Sell Shares", new_sell_path(asset.asset_name) %>
-        <% end %>
+    <div class="bg-zinc-900 hover:bg-black mb-10 rounded-xl grid grid-cols-3 px-3 py-5 items-center">
+        <h2 class="text-4xl"><%= link_to asset.asset_name, asset_path(asset.asset_name) %></h2>
+        <div class="text-center">
+            <p>Shares</p>
+            <%= asset.total_shares %>
+        </div>
+        <div class="text-right">
+            <%= link_to "Buy Shares", new_transaction_path(asset.asset_name), class: "bg-amber-500 p-2 rounded-lg" %>
+            <% if asset.total_shares > 0 %>
+                <%= link_to "Sell Shares", new_sell_path(asset.asset_name), class: "bg-amber-500 p-2 rounded-lg" %>
+            <% end %>
+        </div>
     </div>
 <% end %>
+</div>
