@@ -1,33 +1,36 @@
-<div> This is admin page </div>
-<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-<%= link_to "Create trader profile", new_admin_user_path %>
-<%= link_to "All transactions", admin_transactions_path %>
-<%= link_to "View as user", root_path %>
-  <br>
-  <br>
-  <br>
-<%= search_form_for [:admin, @q] do |f| %>
-  <%= f.label :email_i_cont, 'Search for trader email' %>
-  <br>
-  <%= f.search_field :email_i_cont %>
-  <br>
-  <%= f.check_box :approved_false, {}, 1, nil %>
-  <%= f.label :approved, 'Show pending traders' %>
-  <br>
-  <div class='submit-btn'>
-    <%= f.submit name: '' %>
-  </div>
-<% end %>
-  <br>
-  <br>
-  <br>
-<% @traders.each do |trader| %>
-  <div>
-    <%= trader.email %>
-    <br>
-    <%= trader.approved_status %>
-  </div>
-  <%= link_to 'Show trader', admin_user_path(trader) %>
-  <br>
-  <br>
-<% end %>
+<div class="flex mb-5 justify-between">
+  <h2 class="text-4xl text-amber-500">Dashboard</h2>
+  <%= search_form_for [:admin, @q], class: "flex" do |f| %>
+    <div class="flex gap-1">
+      <%= f.label :email_i_cont, 'Search:', class: "text-xl p-2 py-1" %>
+      <div class="flex flex-col">
+        <%= f.search_field :email_i_cont, placeholder: "user@example.com", class: "rounded p-2 py-1" %>
+        <div class="flex items-center gap-2">
+          <%= f.check_box :approved_false, {}, 1, nil %>
+          <%= f.label :approved, 'Show pending traders' %>
+        </div>
+      </div>
+      <div class='submit-btn'>
+        <%= f.submit name: '', class: "bg-amber-500 p-2 py-1 rounded" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<table class="bg-black w-full table-auto rounded-lg">
+  <thead class="text-left border-b">
+  <tr>
+      <th class="p-3"> User </th>
+      <th class="p-3"> Status </th>
+      <th class="p-3"> Actions </th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @traders.each do |trader| %>
+      <tr>
+        <td class="p-3"><%= trader.email %></td>
+        <td class="p-3"><%= trader.approved_status %></td>
+        <td class="p-3"><%= link_to 'Show trader', admin_user_path(trader), class: "p-2 bg-amber-500 rounded-md" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
