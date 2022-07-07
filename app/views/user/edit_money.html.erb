@@ -1,15 +1,15 @@
-<h1>User#edit</h1>
-<p>Find me in app/views/user/edit.html.erb</p>
-<%= link_to 'Home', root_path %>
+<h2 class="text-amber-500 text-4xl mb-5">Edit Balance</h2>
 
-<%= form_with model: @user, url: user_money_path do |form| %>
-  <div>
-    <%= form.label "Balance" %>
-    <br>
-    <%= form.number_field :money, step: :any %>
-  </div>
+<div class="bg-black p-5 rounded-lg">
+  <%= form_with model: @user, url: user_money_path do |form| %>
+    <div>
+      <%= form.label "Balance" %>
+      <br>
+      <%= form.number_field :money, step: :any, class: "text-black w-1/2" %>
+    </div>
 
-  <div>
-    <%= form.submit "Update balance" %>
-  </div>
-<% end %>
+    <div>
+      <%= form.submit "Update balance", class: "inline-block bg-amber-500 p-3 mt-5" %>
+    </div>
+  <% end %>
+</div>

@@ -1,24 +1,23 @@
-<h1>User#edit</h1>
-<p>Find me in app/views/user/edit.html.erb</p>
+<h2 class="text-amber-500 text-4xl mb-5">Account Information</h2>
 
-<%= link_to 'Home', root_path %>
+<div class="bg-black p-5 rounded-lg">
+  <%= form_with model: @user do |form| %>
+    <div>
+      <%= form.label "Email" %>
+      <br>
+      <%= form.email_field :email, class: "text-black w-1/2" %>
+    </div>
 
-<%= form_with model: @user do |form| %>
-  <div>
-    <%= form.label "Email" %>
-    <br>
-    <%= form.email_field :email %>
-  </div>
+    <div>
+      <%= form.label "Password" %>
+      <br>
+      <%= form.password_field :password, class: "text-black w-1/2" %>
+    </div>
 
-  <div>
-    <%= form.label "Password" %>
-    <br>
-    <%= form.password_field :password %>
-  </div>
+    <div>
+      <%= form.submit "Update user info", class: "inline-block bg-amber-500 p-3 mt-5" %>
+    </div>
+  <% end %>
 
-  <div>
-    <%= form.submit "Update user info" %>
-  </div>
-<% end %>
-
-<%= link_to 'Delete account', user_registration_path, method: :delete, data: {confirm: 'WARNING! Continue to destroy your account? This will delete all your information.'} %>
+  <%= link_to 'Delete account', user_registration_path, method: :delete, data: {confirm: 'WARNING! Continue to destroy your account? This will delete all your information.'}, class: "inline-block bg-red-500 p-3 mt-10" %>
+</div>
