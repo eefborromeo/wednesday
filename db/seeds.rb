@@ -11,6 +11,9 @@ admin = User.create(
   email: 'wednestrade-admin@wednestrade.com',
   password: 'wedtrade',
   password_confirmation: 'wedtrade',
+  username: 'admin',
+  first_name: 'wednesday',
+  last_name: 'trade',
   admin: true,
   approved: true,
   money: 0
@@ -23,6 +26,9 @@ trader1 = User.create(
   email: 'wednestrade-trader1@wednestrade.com',
   password: 'wedtrade',
   password_confirmation: 'wedtrade',
+  username: 'Rusk',
+  first_name: 'Lance Kennard',
+  last_name: 'Pallarca',
   admin: false,
   approved: true,
   money: 10000
@@ -35,6 +41,9 @@ trader2 = User.create(
   email: 'wednestrade-trader2@wednestrade.com',
   password: 'wedtrade',
   password_confirmation: 'wedtrade',
+  username: 'Mel',
+  first_name: 'Eloisa',
+  last_name: 'Borromeo',
   admin: false,
   approved: false,
   money: 0
