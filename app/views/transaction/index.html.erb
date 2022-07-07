@@ -1,44 +1,36 @@
-<h1>Transactions</h1>
-<%= link_to 'Home', root_path %>
-<%= link_to 'My portfolio', asset_index_path %>
-<br>
-<br>
-<%= search_form_for @q, url: transaction_index_path do |form| %>
-    <div>
-        <%= form.label "Search for company name, asset name, or transaction type" %>
-        <br>
-        <%= form.search_field :company_name_or_asset_name_or_transaction_type_i_cont %>
-        <%= form.submit name: '' %>
-    </div>
-<% end %>
-<br>
+<div class="flex justify-between mb-5 items-end">
+    <h2 class="text-4xl text-amber-500">Transactions</h2>
+    <%= search_form_for @q, url: transaction_index_path do |form| %>
+            <%= form.label "Search:" %>
+            <%= form.search_field :company_name_or_asset_name_or_transaction_type_i_cont, class: "text-black rounded-lg w-98 py-2 w-96", placeholder: "company name, asset name, or type"  %>
+            <%= form.submit name: '', class: "bg-amber-500 p-2 rounded" %>
+    <% end %>
+</div>
 <% if @transactions.count == 0 %>
     <div> There's nothing here </div>
 <% end %>
-<br>
-<br>
-<table>
-    <thead>
+<table class="bg-black w-full table-auto rounded-lg">
+    <thead class="text-left border-b">
         <tr>
-            <th> <%= sort_link(@q, :created_at, "Date", default_order: :asc) %> </th>
-            <th> Company Name </th>
-            <th> <%= sort_link(@q, :asset_name, "Asset Name", default_order: :asc) %> </th>
-            <th> Asset Price </th>
-            <th> <%= sort_link(@q, :shares, "Shares", default_order: :asc) %> </th>
-            <th> Total </th>
-            <th> Type </th>
+            <th class="p-3"> <%= sort_link(@q, :created_at, "Date", default_order: :asc) %> </th>
+            <th class="p-3"> Company Name </th>
+            <th class="p-3"> <%= sort_link(@q, :asset_name, "Asset Name", default_order: :asc) %> </th>
+            <th class="p-3"> Asset Price </th>
+            <th class="p-3"> <%= sort_link(@q, :shares, "Shares", default_order: :asc) %> </th>
+            <th class="p-3"> Total </th>
+            <th class="p-3"> Type </th>
         </tr>
     </thead>
     <tbody>
         <% @transactions.each do |transaction| %>
             <tr>
-                <td> <%= transaction.created_at.localtime.strftime('%-B %-d, %Y / %-l%p') %> </td> 
-                <td> <%= transaction.company_name %> </td> 
-                <td> <%= transaction.asset_name %> </td> 
-                <td> <%= transaction.asset_price %> </td> 
-                <td> <%= transaction.shares %> </td> 
-                <td> <%= (transaction.asset_price * transaction.shares).to_d.truncate(2) %> </td>
-                <td> <%= transaction.transaction_type %> </td> 
+                <td class="p-3"> <%= transaction.created_at.localtime.strftime('%-B %-d, %Y - %-l%p') %> </td> 
+                <td class="p-3"> <%= transaction.company_name %> </td> 
+                <td class="p-3"> <%= transaction.asset_name %> </td> 
+                <td class="p-3"> <%= transaction.asset_price %> </td> 
+                <td class="p-3"> <%= transaction.shares %> </td> 
+                <td class="p-3"> <%= (transaction.asset_price * transaction.shares).to_d.truncate(2) %> </td>
+                <td class="p-3"> <%= transaction.transaction_type %> </td> 
             </tr>
         <% end %>
     </tbody>
