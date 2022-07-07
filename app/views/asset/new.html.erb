@@ -3,11 +3,11 @@
 </div>
 <div class="grid grid-cols-4 gap-5">
   <div class="col-span-2 bg-black rounded-md p-4 drop-shadow h-64 flex flex-col justify-between">
-    <%= form_with model: @asset, url: asset_index_path do |form| %>
+    <%= form_with model: @asset, url: asset_index_path, class: "flex flex-col justify-between gap-3" do |form| %>
         <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.label :name, "Asset Name:" %>
-        <%= form.text_field :asset_name %>
-        <%= form.submit "Add" %>
+          <%= form.label :name, "Asset Name:", class: "text-lg" %>
+          <%= form.text_field :asset_name, class: "text-black rounded-md" %>
+        <%= form.submit "Add", class: "bg-amber-500 self-end p-3 rounded-md" %>
     <% end %>
   </div>
   <div class="col-span-2 bg-black rounded-md p-4 drop-shadow h-64 flex flex-col justify-between">
