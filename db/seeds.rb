@@ -66,10 +66,11 @@ Transaction.create(
   user_email: trader1.email,
   asset_id: trader1asset1.id,
   asset_name: 'JBFCF',
-  company_name: 'Jollibee',
+  company_name: 'Jollibee Foods Corp.',
   asset_price: 201.0,
   shares: 5.0,
-  transaction_type: 'Buy'
+  transaction_total: 1005.0,
+  transaction_type: 'buy'
 )
 
 Transaction.create(
@@ -77,8 +78,9 @@ Transaction.create(
   user_email: trader2.email,
   asset_id: trader2asset1.id,
   asset_name: 'MSFT',
-  company_name: 'Microsoft',
+  company_name: 'Microsoft Corporation',
   asset_price: 421.0,
   shares: 0.5,
-  transaction_type: 'Buy'
+  transaction_total: 210.5,
+  transaction_type: 'buy'
 )
