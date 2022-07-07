@@ -1,18 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-zinc-800 text-white h-full">
   <head>
     <title>Wednesday</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="py-5">
+  <div class="grid grid-cols-12 gap-3">
+      <header class="col-start-1 pl-20 col-end-12 flex justify-between items-center py-5">
+        <%= link_to "wednesday", root_path, class: "text-3xl text-amber-500" %>
+        <% if user_signed_in? %>
+          <div class="flex gap-5">
+            <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+            <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+          </div>
+        <% end %>
+      </header>
+      <% if user_signed_in? && current_user.admin == false %>
+        <ul class="col-start-1 col-end-3 flex flex-col pt-10 font-light">
+          <li class="py-3 mb-5 pl-20 <%=active_class("wednesday") %>"><%= link_to "Dashboard", root_path, class: "text-xl block" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("asset") %>"><%= link_to "Portfolio", asset_index_path, class: "text-xl block" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("transaction") %>"><%= link_to "Transactions", transaction_index_path, class: "text-xl" %></li>
+        </ul>
+      <% elsif user_signed_in? %>
+        <ul class="col-start-1 col-end-3 flex flex-col pt-10 font-light">
+          <li class="py-3 mb-5 pl-20 <%=active_class("admin/users") %>"><%= link_to "Dashboard", admin_users_path, class: "text-xl block" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("admin/users", "new") %>"><%= link_to "Create Trader", new_admin_user_path, class: "text-xl block" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("admin/transactions") %>"><%= link_to "All Transactions", admin_transactions_path, class: "text-xl" %></li>
+          <li class="py-3 mb-5 pl-20"><%= link_to "View as User", root_path, class: "text-xl" %></li>
+        </ul>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="col-start-4 col-span-8">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+      <% else %>
+        <div class="col-start-2 col-span-10">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+      <% end %>
+    </div>
   </body>
 </html>

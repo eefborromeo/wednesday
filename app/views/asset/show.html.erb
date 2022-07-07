@@ -1,11 +1,24 @@
-<h1>Show</h1>
-<%= link_to 'Back to portfolio', asset_index_path %>
-<h2><%= @asset.asset_name %></h2>
-<h2><%=  @asset_company_name %></h2>
-<h2><%= @asset_price %></h2>
-<h2><%= @asset.total_shares %></h2>
-<%= link_to 'Buy Shares', new_transaction_path(@asset.asset_name) %>
-<% if @asset.total_shares > 0 %>
-    <%= link_to 'Sell Shares', new_sell_path(@asset.asset_name) %>
-<% end %>
-<%= link_to 'Remove asset', asset_path(@asset.asset_name), method: :delete, data: {confirm: "Continue to remove this asset?"} %>
+<div class="grid grid-cols-2 grid-rows-2 gap-3">
+    <div class="row-span-2 h-96 bg-black rounded-md p-5 flex flex-col justify-between">
+        <h2 class="text-xl">Asset Information:</h2>
+        <div>
+            <h3 class="text-3xl font-bold"><%=  @asset_company_name %></h3>
+            <h3 class="text-2xl"><%= @asset.asset_name %></h3>
+            <h3 class="text-xl">Latest Price: <%= @asset_price %></h3>
+        </div>
+        <div class="flex flex-col text-center gap-2">
+            <%= link_to 'Buy Shares', new_transaction_path(@asset.asset_name), class: "bg-amber-500 p-3 rounded-lg" %>
+            <% if @asset.total_shares > 0 %>
+            <%= link_to 'Sell Shares', new_sell_path(@asset.asset_name), class: "bg-amber-500 p-3 rounded-lg" %>
+            <% end %>
+            <%= link_to 'Remove asset', asset_path(@asset.asset_name), method: :delete, data: {confirm: "Continue to remove this asset?"}, class: "bg-amber-500 p-3 rounded-lg"%>
+        </div>
+    </div>
+    <div class="bg-black rounded-md p-5">
+        <h2 class="mb-7">Total Shares</h2>
+        <h3 class="text-6xl text-center"><%= @asset.total_shares %></h3>
+    </div>
+    <div class="bg-black rounded-md p-5">
+        Graph
+    </div>
+</div>

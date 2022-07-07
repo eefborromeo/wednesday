@@ -12,6 +12,7 @@ class AssetController < ApplicationController
 
     def new
         @asset = Asset.new
+        @user = current_user
     end
 
     def create

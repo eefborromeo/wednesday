@@ -1,3 +1,3 @@
-<div> Edit trader profile </div>
-<%= link_to 'Back', admin_user_path(@trader) %>
+<%= link_to 'Back', admin_user_path(@trader), class: "mb-5 inline-block" %>
+<h2 class="text-4xl text-amber-500 mb-5"> Edit Trader Profile </h2>
 <%= render 'form', trader: @trader %>

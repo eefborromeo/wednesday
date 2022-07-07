@@ -1,8 +1,35 @@
-<h1>Add Asset</h1>
-<%= link_to 'Home', root_path %>
-<%= form_with model: @asset, url: asset_index_path do |form| %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.label :name, "Search:" %>
-    <%= form.text_field :asset_name %>
-    <%= form.submit "Search" %>
-<% end %>
+<div class="col-span-4 flex justify-between items-end pb-3">
+  <h1 class="text-4xl text-amber-500">Add Assets</h1>
+</div>
+<div class="grid grid-cols-4 gap-5">
+  <div class="col-span-2 bg-black rounded-md p-4 drop-shadow h-64 flex flex-col justify-between">
+    <%= form_with model: @asset, url: asset_index_path, class: "flex flex-col justify-between gap-3" do |form| %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+          <%= form.label :name, "Asset Name:", class: "text-lg" %>
+          <%= form.text_field :asset_name, class: "text-black rounded-md" %>
+        <%= form.submit "Add", class: "bg-amber-500 self-end p-3 rounded-md" %>
+    <% end %>
+  </div>
+  <div class="col-span-2 bg-black rounded-md p-4 drop-shadow h-64 flex flex-col justify-between">
+    <p>Balance:</p>
+    <p class="text-7xl text-center">$<%= number_with_precision(@user.money, precision: 2, delimiter: ",") %></p>
+    <%= link_to 'Edit balance', edit_user_money_path(current_user), :class => "block text-xl text-right" %>
+  </div>
+  <h2 class="col-span-4 text-3xl text-amber-500">Popular Assets</h2>
+  <div class="col-span-1 bg-black rounded-md p-4 drop-shadow h-48">
+    <h2>Microsoft</h2>
+    <%= @microsoft %>
+  </div>
+  <div class="col-span-1 bg-black rounded-md p-4 drop-shadow h-48">
+    <h2>Meta</h2>
+    <%= @facebook %>
+  </div>
+  <div class="col-span-1 bg-black rounded-md p-4 drop-shadow h-48">
+    <h2>Amazon</h2>
+    <%= @amazon %>
+  </div>
+  <div class="col-span-1 bg-black rounded-md p-4 drop-shadow h-48">
+    <h2>Jollibee</h2>
+    <%= @jollibee %>
+  </div>  
+</div>

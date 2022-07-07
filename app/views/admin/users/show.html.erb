@@ -1,18 +1,18 @@
-<div> This is trader SHOW </div>
-<br>
-<%= link_to 'Home', admin_users_path %>
-<br>
-<div> <%= @trader.email %> </div>
-<div> <%= @trader.money %> </div>
-<div> <%= @trader.approved_status %> </div>
-<%= form_with model: [:admin, @trader] do |form| %>
-  <div>
-    <%= form.check_box :approved, onchange: "this.form.submit();" %>
-    <% if @trader.approved? %>
-      <span> This trader is approved. </span>
-    <% else %>
-      <span> Approve this trader? </span>
-    <% end %>
-  </div>
-<% end %>
-<%= link_to "Edit details", edit_admin_user_path %>
+<div class="text-4xl text-amber-500">Trader Profile </div>
+
+<div class="bg-black p-3 rounded-md">
+  <h2 class="text-3xl font-bold"> <%= @trader.email %> </h2>
+  <div class="text-2xl">Balance: <%= @trader.money %> </div>
+  <div class="text-2xl">Status: <%= @trader.approved_status %> </div>
+  <%= form_with model: [:admin, @trader] do |form| %>
+    <div>
+      <%= form.check_box :approved, onchange: "this.form.submit();" %>
+      <% if @trader.approved? %>
+        <span> This trader is approved. </span>
+      <% else %>
+        <span> Approve this trader? </span>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "Edit details", edit_admin_user_path, class: "bg-amber-500 p-2 inline-block rounded-md mt-5" %>
+</div>
