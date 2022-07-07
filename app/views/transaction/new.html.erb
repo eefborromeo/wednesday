@@ -9,6 +9,6 @@
     <%= form.hidden_field :asset_name, value: @asset.asset_name %>
     <%= form.hidden_field :asset_price, value: @latest_price %>
     <%= form.label :shares, "Shares:" %>
-    <%= form.text_field :shares %>
+    <%= form.number_field :shares, step: :any %>
     <%= form.submit "Buy Shares" %>
 <% end %>
