@@ -5,7 +5,7 @@
 <br>
 <%= search_form_for @q, url: transaction_index_path do |form| %>
     <div>
-        <%= form.label "Search for company name, asset name, or transaction type" %>
+        <%= form.label "Search for company name, asset name" %>
         <br>
         <%= form.search_field :company_name_or_asset_name_or_transaction_type_i_cont %>
         <%= form.submit name: '' %>
@@ -21,12 +21,12 @@
     <thead>
         <tr>
             <th> <%= sort_link(@q, :created_at, "Date", default_order: :asc) %> </th>
-            <th> Company Name </th>
+            <th> <%= sort_link(@q, :company_name, "Company Name", default_order: :asc) %> </th>
             <th> <%= sort_link(@q, :asset_name, "Asset Name", default_order: :asc) %> </th>
-            <th> Asset Price </th>
+            <th> <%= sort_link(@q, :asset_price, "Asset Price", default_order: :asc) %> </th>
             <th> <%= sort_link(@q, :shares, "Shares", default_order: :asc) %> </th>
-            <th> Total </th>
-            <th> Type </th>
+            <th> <%= sort_link(@q, :transaction_total, "Total", default_order: :asc) %> </th>
+            <th> <%= sort_link(@q, :transaction_type, "Type", default_order: :asc) %> </th>
         </tr>
     </thead>
     <tbody>
@@ -35,9 +35,9 @@
                 <td> <%= transaction.created_at.localtime.strftime('%-B %-d, %Y / %-l%p') %> </td> 
                 <td> <%= transaction.company_name %> </td> 
                 <td> <%= transaction.asset_name %> </td> 
-                <td> <%= transaction.asset_price %> </td> 
-                <td> <%= transaction.shares %> </td> 
-                <td> <%= (transaction.asset_price * transaction.shares).to_d.truncate(2) %> </td>
+                <td> <%= transaction.asset_price.to_d.truncate(2) %> </td> 
+                <td> <%= transaction.shares.to_d.truncate(2) %> </td> 
+                <td> <%= transaction.transaction_total.to_d.truncate(2) %> </td>
                 <td> <%= transaction.transaction_type %> </td> 
             </tr>
         <% end %>
