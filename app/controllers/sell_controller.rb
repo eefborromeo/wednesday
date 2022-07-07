@@ -27,7 +27,7 @@ class SellController < ApplicationController
         params[:transaction][:transaction_total] = params[:transaction][:asset_price].to_d * params[:transaction][:shares].to_d
         params[:transaction][:transaction_type] = 'sell'
         
-        params.require(:transaction).permit(:user_id, :asset_id, :company_name, :asset_name, :asset_price, :transaction_total, :transaction_type, :user_email, :shares)
+        params.require(:transaction).permit(:user_id, :company_name, :asset_name, :asset_price, :transaction_total, :transaction_type, :user_email, :shares)
     end
 
     def approved
