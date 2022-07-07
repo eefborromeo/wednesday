@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_30_115324) do
+ActiveRecord::Schema.define(version: 2022_07_06_131000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_06_30_115324) do
     t.string "asset_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "total_shares", default: 0.0
+    t.decimal "total_shares", default: "0.0"
     t.index ["user_id"], name: "index_assets_on_user_id"
   end
 
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(version: 2022_06_30_115324) do
     t.string "company_name"
     t.bigint "asset_id"
     t.string "asset_name"
-    t.float "asset_price"
-    t.float "shares"
+    t.decimal "asset_price"
+    t.decimal "shares"
     t.string "transaction_type"
     t.string "user_email", null: false
+    t.decimal "transaction_total"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -51,7 +52,7 @@ ActiveRecord::Schema.define(version: 2022_06_30_115324) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.boolean "approved", default: false, null: false
-    t.float "money", default: 10000.0
+    t.decimal "money", default: "10000.0"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
