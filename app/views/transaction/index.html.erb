@@ -6,9 +6,6 @@
             <%= form.submit name: '', class: "bg-amber-500 p-2 rounded" %>
     <% end %>
 </div>
-<% if @transactions.count == 0 %>
-    <div> There's nothing here </div>
-<% end %>
 <table class="bg-black w-full table-auto rounded-lg">
     <thead class="text-left border-b">
         <tr>
@@ -31,6 +28,11 @@
                 <td class="p-3"> <%= transaction.shares.to_d.truncate(2) %> </td> 
                 <td class="p-3"> <%= transaction.transaction_total.to_d.truncate(2) %> </td>
                 <td class="p-3"> <%= transaction.transaction_type %> </td> 
+            </tr>
+        <% end %>
+        <% if @transactions.count == 0 %>
+            <tr>
+                <td class="p-3 text-left"> No records yet </td>
             </tr>
         <% end %>
     </tbody>
