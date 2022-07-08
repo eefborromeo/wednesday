@@ -3,7 +3,7 @@
     <%= link_to "+ Add Asset", new_asset_path, class: "text-amber-500" %>
 </div>
 
-<div class="h-[550px] overflow-scroll">
+<div class="h-[550px] overflow-auto">
 <% if @assets.count == 0 %>
     <div> There's nothing here </div>
 <% end %>
