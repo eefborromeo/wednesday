@@ -12,7 +12,7 @@
             <%= form.hidden_field :asset_name, value: @asset.asset_name %>
             <%= form.hidden_field :asset_price, value: @asset_info[:price] %>
             <%= form.label :shares, "Shares:", class: "text-left" %>
-            <%= form.text_field :shares, class: "w-full rounded-md text-black" %>
+            <%= form.number_field :shares, step: :any, class: "w-full rounded-md text-black" %>
             <%= form.submit "Sell Shares", class: "bg-amber-500 p-3 rounded-lg self-end" %>
         <% end %>
     </div>
