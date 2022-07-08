@@ -22,7 +22,7 @@ class AssetController < ApplicationController
         if @asset.save
             redirect_to asset_index_path
         else
-            redirect_to asset_index_path, alert: "#{@asset.errors.first.message}"
+            redirect_to new_asset_path, alert: "#{@asset.errors.first.message}"
         end
     end
 
