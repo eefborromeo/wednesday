@@ -8,6 +8,8 @@ class Admin::UsersController < ApplicationController
     end
 
     def show
+        @q = @trader.transactions.ransack(params[:q])
+        @transactions = @q.result.order(created_at: :asc)
     end
 
     def new
@@ -52,6 +54,6 @@ class Admin::UsersController < ApplicationController
     end
     
     def trader_params
-        params.require(:user).permit(:email, :password, :password_confirmation, :money, :approved)
+        params.require(:user).permit(:email, :password, :password_confirmation, :money, :approved, :username, :first_name, :last_name)
     end
 end
