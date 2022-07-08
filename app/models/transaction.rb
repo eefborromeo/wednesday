@@ -42,4 +42,8 @@ class Transaction < ApplicationRecord
             user.update(money: user.money + (shares * asset_price))
         end
     end
+
+    def ransackable_attributes(auth_object = nil)
+        ["company_name", "asset_name", "type"]
+    end
 end
