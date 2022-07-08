@@ -1,15 +1,33 @@
 <%= form_with model: [:admin, trader], class: "bg-black p-3 rounded-lg" do |form| %>
   <%= form.hidden_field :approved, value: true %>
   <div>
+    <%= form.label "First Name" %>
+    <br>
+    <%= form.text_field :first_name, class: "w-1/2 text-black", placeholder: "Enter your name", required: true %>
+  </div>
+  
+  <div>
+    <%= form.label "Last Name" %>
+    <br>
+    <%= form.text_field :last_name, class: "w-1/2 text-black", placeholder: "Enter your name", required: true %>
+  </div>
+  
+  <div>
+    <%= form.label "Username" %>
+    <br>
+    <%= form.text_field :username, class: "w-1/2 text-black", placeholder: "Enter your username", required: true %>
+  </div>
+
+  <div>
     <%= form.label "Email" %>
     <br>
-    <%= form.email_field :email, class: "w-1/2 text-black", placeholder: "user@example.com" %>
+    <%= form.email_field :email, class: "w-1/2 text-black", placeholder: "user@example.com", required: true %>
   </div>
 
   <div>
     <%= form.label "Password" %>
     <br>
-    <%= form.password_field :password, class: "w-1/2 text-black", placeholder: "Password" %>
+    <%= form.password_field :password, class: "w-1/2 text-black", placeholder: "Password", required: true %>
   </div>
 
   <div>
