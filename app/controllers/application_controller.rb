@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     before_action :update_allowed_parameters, if: :devise_controller?
     before_action :authenticate_user!
 
-    # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    rescue_from IEX::Errors::SymbolNotFoundError, with: :asset_not_found
 
     protected
 
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password, :current_password)}
     end
 
-    # def record_not_found
-    #     render file: Rails.root.join('public/404.html'), layout: true, status: :not_found
-    # end
+    def asset_not_found
+        redirect_to asset_index_path, alert: "Invalid asset. For a list of valid assets, please refer to this link #{"https://iextrading.com/trading/eligible-symbols/"}"
+    end
 end

@@ -7,6 +7,19 @@ class User < ApplicationRecord
   has_many :transactions, dependent: :destroy
   has_many :assets, dependent: :destroy
 
+  validates :username,
+              presence: true,
+              uniqueness: true,
+              length: { maximum: 15 }
+  
+  validates :first_name,
+              presence: true,
+              format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+
+  validates :last_name,
+              presence: true,
+              format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+
   after_update_commit :send_approval_email, if: :approved?
 
   def approved_status
