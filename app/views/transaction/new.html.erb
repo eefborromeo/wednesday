@@ -3,15 +3,15 @@
     <div class="row-span-2 h-96 bg-black rounded-md p-5 flex flex-col justify-between">
         <h2 class="text-xl">Asset Information:</h2>
         <div>
-            <h3 class="text-3xl font-bold"><%= @company_name %></h3>
+            <h3 class="text-3xl font-bold"><%= @asset_info[:company_name] %></h3>
             <h3 class="text-2xl"><%= @asset.asset_name %></h3>
-            <h3 class="text-xl">Latest Price: <%= @latest_price %></h3>
+            <h3 class="text-xl">Latest Price: <%= @asset_info[:price] %></h3>
         </div>
         <%= form_with model: @transaction, url: transaction_index_path, class: "flex flex-col text-center gap-2" do |form| %>
             <%= form.hidden_field :asset_id, value: @asset.id %>
-            <%= form.hidden_field :company_name, value: @company_name %>
+            <%= form.hidden_field :company_name, value: @asset_info[:company_name] %>
             <%= form.hidden_field :asset_name, value: @asset.asset_name %>
-            <%= form.hidden_field :asset_price, value: @latest_price %>
+            <%= form.hidden_field :asset_price, value: @asset_info[:price] %>
             <%= form.label :shares, "Shares:", class: "text-left" %>
             <%= form.text_field :shares, class: "w-full rounded-md text-black" %>
             <%= form.submit "Buy Shares", class: "bg-amber-500 p-3 rounded-lg self-end" %>
