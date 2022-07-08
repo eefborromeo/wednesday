@@ -3,9 +3,7 @@ class SellController < ApplicationController
     
     def new
         @asset = Asset.find_by(asset_name: params[:id], user_id: current_user.id)
-        @user = current_user.id
-        @company_name = Asset.get_company_name(@asset.asset_name)
-        @latest_price = Asset.get_latest_price(@asset.asset_name)
+        @asset_info = Asset.get_asset_info(@asset.asset_name)
         @transaction = Transaction.new
     end
 
