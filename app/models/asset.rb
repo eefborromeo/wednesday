@@ -13,8 +13,10 @@ class Asset < ApplicationRecord
    
     def self.get_asset_info(asset_name)
         { 
-            company_name: Asset.iex_api.company(asset_name).company_name, 
-            price: Asset.iex_api.quote(asset_name).latest_price 
+            company_name: Asset.iex_api.company(asset_name).company_name,
+            ceo: Asset.iex_api.company(asset_name).ceo,
+            price: Asset.iex_api.quote(asset_name).latest_price, 
+            latest_headline: Asset.iex_api.news(asset_name, 5)
         }
     end
 
