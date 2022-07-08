@@ -21,24 +21,7 @@ class Asset < ApplicationRecord
     end
 
     def self.get_popular_assets
-        popular_assets = []
-        sample = [
-            'MSFT',
-            'META',
-            'AMZN',
-            'AAPL',
-            'NFLX',
-            'GOOG',
-            'JBFCF'
-        ]
-        sample.each do |each|
-            popular_assets << {
-                name: each,
-                company_name: Asset.iex_api.company(each).company_name,
-                price: Asset.iex_api.quote(each).latest_price
-            }
-        end
-        popular_assets
+        Asset.iex_api.stock_market_list(:mostactive)
     end
 
     private
