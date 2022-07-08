@@ -8,6 +8,8 @@ class AssetController < ApplicationController
     def show
         @asset_price = Asset.get_latest_price(@asset.asset_name)
         @asset_company_name = Asset.get_company_name(@asset.asset_name)
+        @q = Transaction.where(asset_name: @asset.asset_name).ransack(params[:q])
+        @transactions = @q.result.order(created_at: :asc)
     end
 
     def new
