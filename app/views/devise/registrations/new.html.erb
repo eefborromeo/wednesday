@@ -5,8 +5,23 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field w-96 mb-5">
+    <%= f.label :username, class: "block" %>
+    <%= f.text_field :username, autofocus: true, class: "text-black w-full", required: true %>
+  </div>
+
+  <div class="field w-96 mb-5">
+    <%= f.label :first_name, class: "block" %>
+    <%= f.text_field :first_name, class: "text-black w-full", required: true %>
+  </div>
+
+  <div class="field w-96 mb-5">
+    <%= f.label :last_name, class: "block" %>
+    <%= f.text_field :last_name, class: "text-black w-full", required: true %>
+  </div>
+
+  <div class="field w-96 mb-5">
     <%= f.label :email, class: "block" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-black w-full" %>
+    <%= f.email_field :email, class: "text-black w-full" %>
   </div>
 
   <div class="field w-96 mb-3">
@@ -14,12 +29,12 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "text-black w-full" %>
+    <%= f.password_field :password, class: "text-black w-full" %>
   </div>
 
   <div class="field mb-5">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text-black w-full" %>
+    <%= f.password_field :password_confirmation, class: "text-black w-full" %>
   </div>
 
   <div class="actions text-right">
