@@ -7,7 +7,7 @@
         <%= f.search_field :email_i_cont, placeholder: "user@example.com", class: "rounded p-2 py-1" %>
         <div class="flex items-center gap-2">
           <%= f.check_box :approved_false, {}, 1, nil %>
-          <%= f.label :approved, 'Show pending traders' %>
+          <%= f.label :approved, 'Show only pending traders' %>
         </div>
       </div>
       <div class='submit-btn'>
@@ -19,7 +19,8 @@
 <table class="bg-black w-full table-auto rounded-lg">
   <thead class="text-left border-b">
   <tr>
-      <th class="p-3"> User </th>
+      <th class="p-3"> Username </th>
+      <th class="p-3"> Email </th>
       <th class="p-3"> Status </th>
       <th class="p-3"> Actions </th>
   </tr>
@@ -27,6 +28,7 @@
   <tbody>
     <% @traders.each do |trader| %>
       <tr>
+        <td class="p-3"><%= trader.username %></td>
         <td class="p-3"><%= trader.email %></td>
         <td class="p-3"><%= trader.approved_status %></td>
         <td class="p-3"><%= link_to 'Show trader', admin_user_path(trader), class: "p-2 bg-amber-500 rounded-md" %></td>
