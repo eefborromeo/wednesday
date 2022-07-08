@@ -2,9 +2,9 @@
     <div class="row-span-2 h-96 bg-black rounded-md p-5 flex flex-col justify-between">
         <h2 class="text-xl">Asset Information:</h2>
         <div>
-            <h3 class="text-3xl font-bold"><%=  @asset_company_name %></h3>
+            <h3 class="text-3xl font-bold"><%=  @asset_info[:company_name] %></h3>
             <h3 class="text-2xl"><%= @asset.asset_name %></h3>
-            <h3 class="text-xl">Latest Price: <%= @asset_price %></h3>
+            <h3 class="text-xl">Latest Price: <%= @asset_info[:price] %></h3>
         </div>
         <div class="flex flex-col text-center gap-2">
             <%= link_to 'Buy Shares', new_transaction_path(@asset.asset_name), class: "bg-amber-500 p-3 rounded-lg" %>
