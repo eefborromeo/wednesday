@@ -5,6 +5,9 @@ class Transaction < ApplicationRecord
     after_save :update_asset_total_shares
     after_save :update_user_balance
 
+    validates :shares,
+                format: { with: /\A-?+(?=.??\d)\d*\.?\d*\z/, message: 'Only allows numbers' }
+
     private 
 
     def check_transaction_amount_validity
