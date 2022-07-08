@@ -44,6 +44,11 @@
                     <td class="py-1 px-2"> <%= transaction.transaction_type %> </td> 
                 </tr>
             <% end %>
+            <% if @transactions.count == 0 %>
+                <tr>
+                    <td class="p-3 text-left"> No records yet </td>
+                </tr>
+            <% end %>
         </tbody>
     </table>
 </div>
