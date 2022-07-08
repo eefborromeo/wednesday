@@ -22,3 +22,28 @@
         Graph
     </div>
 </div>
+<div class="text-2xl text-amber-500">Asset Transactions</div>
+<div class="bg-black p-3 rounded-md">
+  <table class="bg-black w-full table-auto rounded-lg">
+        <thead class="text-left border-b">
+            <tr>
+                <th class="py-1 px-2"> <%= sort_link(@q, :created_at, "Date", default_order: :asc) %> </th>
+                <th class="py-1 px-2"> <%= sort_link(@q, :asset_price, "Asset Price", default_order: :asc) %> </th>
+                <th class="py-1 px-2"> <%= sort_link(@q, :shares, "Shares", default_order: :asc) %> </th>
+                <th class="py-1 px-2"> <%= sort_link(@q, :transaction_total, "Total", default_order: :asc) %> </th>
+                <th class="py-1 px-2"> <%= sort_link(@q, :transaction_type, "Type", default_order: :asc) %> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @transactions.each do |transaction| %>
+                <tr>
+                    <td class="py-1 px-2"> <%= transaction.created_at.localtime.strftime('%-B %-d, %Y - %-l%p') %> </td> 
+                    <td class="py-1 px-2"> <%= transaction.asset_price %> </td> 
+                    <td class="py-1 px-2"> <%= transaction.shares %> </td> 
+                    <td class="py-1 px-2"> <%= transaction.transaction_total.to_d.truncate(2) %> </td>
+                    <td class="py-1 px-2"> <%= transaction.transaction_type %> </td> 
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
