@@ -22,7 +22,7 @@ class AssetController < ApplicationController
         if @asset.save
             redirect_to asset_index_path
         else
-            redirect_to asset_index_path, notice: "This asset already exists in your portfolio"
+            redirect_to asset_index_path, alert: "#{@asset.errors.first.message}"
         end
     end
 
