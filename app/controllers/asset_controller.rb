@@ -6,15 +6,14 @@ class AssetController < ApplicationController
     end
     
     def show
-        @asset_price = Asset.get_latest_price(@asset.asset_name)
-        @asset_company_name = Asset.get_company_name(@asset.asset_name)
+        @asset_info = Asset.get_asset_info(@asset.asset_name)
         @q = Transaction.where(asset_name: @asset.asset_name).ransack(params[:q])
-        @transactions = @q.result.order(created_at: :asc)
+        @transactions = @q.result.order(created_at: :desc)
     end
 
     def new
         @asset = Asset.new
-        @user = current_user
+        @assets = Asset.get_popular_assets
     end
 
     def create
