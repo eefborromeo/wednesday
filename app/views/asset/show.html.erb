@@ -1,5 +1,5 @@
 <div class="grid grid-cols-2 grid-rows-2 gap-3">
-    <div class="row-span-2 h-96 bg-black rounded-md p-5 flex flex-col justify-between">
+    <div class="row-span-2 bg-black rounded-md p-5">
         <h2 class="text-xl">Asset Information:</h2>
         <div>
             <h3 class="text-3xl font-bold"><%=  @asset_info[:company_name] %></h3>
@@ -19,31 +19,38 @@
         <h3 class="text-6xl text-center"><%= @asset.total_shares %></h3>
     </div>
     <div class="bg-black rounded-md p-5">
-        Graph
+        <h2 class="mb-5">Latest Headlines</h2>
+        <ul class="list-disc pl-5">
+        <% @asset_info[:latest_headline].each do |news| %>
+            <li><%= news.headline %></li>
+        <% end %>
+        </ul>
     </div>
 </div>
-<div class="text-2xl text-amber-500">Asset Transactions</div>
-<div class="bg-black p-3 rounded-md">
-  <table class="bg-black w-full table-auto rounded-lg">
-        <thead class="text-left border-b">
-            <tr>
-                <th class="py-1 px-2"> <%= sort_link(@q, :created_at, "Date", default_order: :asc) %> </th>
-                <th class="py-1 px-2"> <%= sort_link(@q, :asset_price, "Asset Price", default_order: :asc) %> </th>
-                <th class="py-1 px-2"> <%= sort_link(@q, :shares, "Shares", default_order: :asc) %> </th>
-                <th class="py-1 px-2"> <%= sort_link(@q, :transaction_total, "Total", default_order: :asc) %> </th>
-                <th class="py-1 px-2"> <%= sort_link(@q, :transaction_type, "Type", default_order: :asc) %> </th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @transactions.each do |transaction| %>
+<div class="mt-5">
+    <div class="text-2xl text-amber-500 mb-3">Asset Transactions</div>
+    <div class="bg-black p-3 rounded-md">
+    <table class="bg-black w-full table-auto rounded-lg">
+            <thead class="text-left border-b">
                 <tr>
-                    <td class="py-1 px-2"> <%= transaction.created_at.localtime.strftime('%-B %-d, %Y - %-l%p') %> </td> 
-                    <td class="py-1 px-2"> <%= transaction.asset_price %> </td> 
-                    <td class="py-1 px-2"> <%= transaction.shares %> </td> 
-                    <td class="py-1 px-2"> <%= transaction.transaction_total.to_d.truncate(2) %> </td>
-                    <td class="py-1 px-2"> <%= transaction.transaction_type %> </td> 
+                    <th class="py-1 px-2"> <%= sort_link(@q, :created_at, "Date", default_order: :asc) %> </th>
+                    <th class="py-1 px-2"> <%= sort_link(@q, :asset_price, "Asset Price", default_order: :asc) %> </th>
+                    <th class="py-1 px-2"> <%= sort_link(@q, :shares, "Shares", default_order: :asc) %> </th>
+                    <th class="py-1 px-2"> <%= sort_link(@q, :transaction_total, "Total", default_order: :asc) %> </th>
+                    <th class="py-1 px-2"> <%= sort_link(@q, :transaction_type, "Type", default_order: :asc) %> </th>
                 </tr>
-            <% end %>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <% @transactions.each do |transaction| %>
+                    <tr>
+                        <td class="py-1 px-2"> <%= transaction.created_at.localtime.strftime('%-B %-d, %Y - %-l%p') %> </td> 
+                        <td class="py-1 px-2"> <%= transaction.asset_price %> </td> 
+                        <td class="py-1 px-2"> <%= transaction.shares %> </td> 
+                        <td class="py-1 px-2"> <%= transaction.transaction_total.to_d.truncate(2) %> </td>
+                        <td class="py-1 px-2"> <%= transaction.transaction_type %> </td> 
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
 </div>
