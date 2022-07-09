@@ -16,7 +16,7 @@ admin = User.create(
   last_name: 'trade',
   admin: true,
   approved: true,
-  money: 0
+  money: 0.0
 )
 
 admin.skip_confirmation!
@@ -31,7 +31,7 @@ trader1 = User.create(
   last_name: 'Pallarca',
   admin: false,
   approved: true,
-  money: 10000
+  money: 10000.0
 )
 
 trader1.skip_confirmation!
@@ -46,7 +46,7 @@ trader2 = User.create(
   last_name: 'Borromeo',
   admin: false,
   approved: false,
-  money: 0
+  money: 0.0
 )
 
 trader2.skip_confirmation!
@@ -61,13 +61,13 @@ trader1asset1 = Asset.create(
 trader1asset2 = Asset.create(
   user_id: trader1.id,
   asset_name: 'MSFT',
-  total_shares: 0
+  total_shares: 0.0
 )
 
 trader2asset1 = Asset.create(
   user_id: trader2.id,
   asset_name: 'MSFT',
-  total_shares: 0.5
+  total_shares: 0.0
 )
 
 Transaction.create(
@@ -78,16 +78,5 @@ Transaction.create(
   asset_price: 201.0,
   shares: 5.0,
   transaction_total: 1005.0,
-  transaction_type: 'buy'
-)
-
-Transaction.create(
-  user_id: trader2.id,
-  user_email: trader2.email,
-  asset_name: 'MSFT',
-  company_name: 'Microsoft Corporation',
-  asset_price: 421.0,
-  shares: 0.5,
-  transaction_total: 210.5,
   transaction_type: 'buy'
 )

@@ -3,19 +3,19 @@
     <%= search_form_for @q, url: transaction_index_path do |form| %>
             <%= form.label "Search:" %>
             <%= form.search_field :company_name_or_asset_name_or_transaction_type_i_cont, class: "text-black rounded-lg w-98 py-2 w-96", placeholder: "company name, asset name, or type"  %>
-            <%= form.submit name: '', class: "bg-amber-500 p-2 rounded" %>
+            <%= form.submit name: '', class: "bg-amber-500 p-2 rounded cursor-pointer hover:text-black" %>
     <% end %>
 </div>
 <table class="bg-black w-full table-auto rounded-lg">
     <thead class="text-left border-b">
         <tr>
-            <th class="p-3"> <%= sort_link(@q, :created_at, "Date", default_order: :asc) %> </th>
-            <th class="p-3"> <%= sort_link(@q, :company_name, "Company Name", default_order: :asc) %> </th>
-            <th class="p-3"> <%= sort_link(@q, :asset_name, "Asset Name", default_order: :asc) %> </th>
-            <th class="p-3"> <%= sort_link(@q, :asset_price, "Asset Price", default_order: :asc) %> </th>
-            <th class="p-3"> <%= sort_link(@q, :shares, "Shares", default_order: :asc) %> </th>
-            <th class="p-3"> <%= sort_link(@q, :transaction_total, "Total", default_order: :asc) %> </th>
-            <th class="p-3"> <%= sort_link(@q, :transaction_type, "Type", default_order: :asc) %> </th>
+            <th class="p-3"> <%= sort_link(@q, :created_at, "Date", class: "hover:text-amber-500", default_order: :asc) %> </th>
+            <th class="p-3"> <%= sort_link(@q, :company_name, "Company Name", class: "hover:text-amber-500", default_order: :asc) %> </th>
+            <th class="p-3"> <%= sort_link(@q, :asset_name, "Asset Symbol", class: "hover:text-amber-500", default_order: :asc) %> </th>
+            <th class="p-3"> <%= sort_link(@q, :asset_price, "Asset Price", class: "hover:text-amber-500", default_order: :asc) %> </th>
+            <th class="p-3"> <%= sort_link(@q, :shares, "Shares", class: "hover:text-amber-500", default_order: :asc) %> </th>
+            <th class="p-3"> <%= sort_link(@q, :transaction_total, "Total", class: "hover:text-amber-500", default_order: :asc) %> </th>
+            <th class="p-3"> <%= sort_link(@q, :transaction_type, "Type", class: "hover:text-amber-500", default_order: :asc) %> </th>
         </tr>
     </thead>
     <tbody>
@@ -23,11 +23,15 @@
             <tr>
                 <td class="p-3"> <%= transaction.created_at.localtime.strftime('%-B %-d, %Y - %-l%p') %> </td> 
                 <td class="p-3"> <%= transaction.company_name %> </td> 
-                <td class="p-3"> <%= link_to transaction.asset_name, asset_path(transaction.asset_name), target: "_blank", class: "p-2 bg-amber-500  rounded-md" %> </td> 
+                <td class="p-3"> <%= link_to transaction.asset_name, asset_path(transaction.asset_name), target: "_blank", class: "p-2 bg-amber-500 rounded-md hover:text-black" %> </td> 
                 <td class="p-3"> <%= transaction.asset_price.to_d.truncate(2) %> </td> 
                 <td class="p-3"> <%= transaction.shares.to_d.truncate(2) %> </td> 
                 <td class="p-3"> <%= transaction.transaction_total.to_d.truncate(2) %> </td>
-                <td class="p-3"> <%= transaction.transaction_type %> </td> 
+                <% if transaction.transaction_type == "buy" %>
+                    <td class="text-green-600 p-2"> <%= transaction.transaction_type %> </td> 
+                <% else %>
+                    <td class="p-2 text-red-600"> <%= transaction.transaction_type %> </td> 
+                <% end %>
             </tr>
         <% end %>
         <% if @transactions.count == 0 %>

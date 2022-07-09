@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
     end
 
     def update_allowed_parameters
-        devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation)}
-        devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password, :current_password)}
+        devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:username, :last_name, :first_name, :email, :password, :password_confirmation)}
+        devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :last_name, :first_name, :email, :password, :current_password)}
     end
 
     def asset_not_found
-        redirect_to new_asset_path, alert: "Invalid asset. For a list of valid assets, please refer to this link #{"https://iextrading.com/trading/eligible-symbols/"}"
+        redirect_to new_asset_path, alert: "Invalid asset. Please refer to the Asset Symbol reference link."
     end
 end

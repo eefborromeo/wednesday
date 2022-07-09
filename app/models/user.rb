@@ -14,12 +14,13 @@ class User < ApplicationRecord
   
   validates :first_name,
               presence: true,
-              format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+              format: { with: /\A[a-zA-Z ]*\z/i, message: "First name only allows letters" }
 
   validates :last_name,
               presence: true,
-              format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+              format: { with: /\A[a-zA-Z ]*\z/i, message: "Last name only allows letters" }
 
+  before_save :capitalize_name            
   after_update_commit :send_approval_email, if: :approved?
 
   def approved_status
@@ -36,5 +37,14 @@ class User < ApplicationRecord
     if saved_change_to_attribute?(:approved)
       ApprovalMailer.trader_approved(self).deliver_now
     end
+  end
+
+  def ransackable_attributes(auth_object = nil)
+    ["username", "email"]
+  end
+
+  def capitalize_name
+    self.first_name = first_name.titleize
+    self.last_name = last_name.titleize
   end
 end

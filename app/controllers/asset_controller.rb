@@ -20,15 +20,15 @@ class AssetController < ApplicationController
         @asset = Asset.new(asset_params)
 
         if @asset.save
-            redirect_to asset_index_path
+            redirect_to asset_index_path, notice: "You have successfully added #{@asset.asset_name} to your portfolio"
         else
             redirect_to new_asset_path, alert: "#{@asset.errors.first.message}"
         end
     end
 
     def destroy
+        redirect_to asset_index_path, notice: "You have successfully removed #{@asset.asset_name} from your portfolio."
         @asset.destroy
-        redirect_to asset_index_path
     end
 
     private
