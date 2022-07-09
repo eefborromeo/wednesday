@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
     end
 
     def asset_not_found
-        redirect_to new_asset_path, alert: "Invalid asset. For a list of valid assets, please refer to this link #{"https://iextrading.com/trading/eligible-symbols/"}"
+        redirect_to new_asset_path, alert: "Invalid asset. Please refer to the Asset Symbol reference link."
     end
 end
