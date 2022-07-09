@@ -5,11 +5,11 @@
     <div>
       <%= form.label "Balance" %>
       <br>
-      <%= form.number_field :money, step: :any, class: "text-black w-1/2" %>
+      <%= form.number_field :money, step: :any, class: "text-black w-1/2", required: true %>
     </div>
 
     <div>
-      <%= form.submit "Update balance", class: "inline-block bg-amber-500 p-3 mt-5" %>
+      <%= form.submit "Update balance", class: "inline-block bg-amber-500 p-3 mt-5 cursor-pointer hover:text-black" %>
     </div>
   <% end %>
 </div>

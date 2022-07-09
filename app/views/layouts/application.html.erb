@@ -17,35 +17,37 @@
         <%= link_to "wednesday", root_path, class: "text-3xl text-amber-500" %>
         <% if user_signed_in? %>
           <div class="flex gap-5">
-            <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-            <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+            <% unless current_user.admin? %>
+              <%= link_to 'Edit Profile', edit_user_path(current_user), class: "hover:text-amber-500" %>
+            <% end %>
+            <%= link_to "Sign Out", destroy_user_session_path, class: "hover:text-red-500", method: :delete %>
           </div>
         <% end %>
       </header>
       <% if user_signed_in? && current_user.admin == false %>
         <ul class="col-start-1 col-end-3 flex flex-col pt-10 font-light">
-          <li class="py-3 mb-5 pl-20 <%=active_class("wednesday") %>"><%= link_to "Dashboard", root_path, class: "text-xl block" %></li>
-          <li class="py-3 mb-5 pl-20 <%=active_class("asset") %>"><%= link_to "Portfolio", asset_index_path, class: "text-xl block" %></li>
-          <li class="py-3 mb-5 pl-20 <%=active_class("transaction") %>"><%= link_to "Transactions", transaction_index_path, class: "text-xl" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("wednesday") %>"><%= link_to "Dashboard", root_path, class: "text-xl block hover:text-amber-500" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("asset") %>"><%= link_to "Portfolio", asset_index_path, class: "text-xl block hover:text-amber-500" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("transaction") %>"><%= link_to "Transactions", transaction_index_path, class: "text-xl hover:text-amber-500" %></li>
         </ul>
       <% elsif user_signed_in? %>
         <ul class="col-start-1 col-end-3 flex flex-col pt-10 font-light">
-          <li class="py-3 mb-5 pl-20 <%=active_class("admin/users") %>"><%= link_to "Dashboard", admin_users_path, class: "text-xl block" %></li>
-          <li class="py-3 mb-5 pl-20 <%=active_class("admin/users", "new") %>"><%= link_to "Create Trader", new_admin_user_path, class: "text-xl block" %></li>
-          <li class="py-3 mb-5 pl-20 <%=active_class("admin/transactions") %>"><%= link_to "All Transactions", admin_transactions_path, class: "text-l" %></li>
-          <li class="py-3 mb-5 pl-20"><%= link_to "View as User", root_path, class: "text-xl" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("admin/users") %>"><%= link_to "Dashboard", admin_users_path, class: "text-xl block hover:text-amber-500" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("admin/users", "new") %>"><%= link_to "Create Trader", new_admin_user_path, class: "text-xl block hover:text-amber-500" %></li>
+          <li class="py-3 mb-5 pl-20 <%=active_class("admin/transactions") %>"><%= link_to "All Transactions", admin_transactions_path, class: "text-l hover:text-amber-500" %></li>
+          <li class="py-3 mb-5 pl-20"><%= link_to "View as User", root_path, class: "text-xl hover:text-amber-500" %></li>
         </ul>
       <% end %>
       <% if user_signed_in? %>
         <div class="col-start-4 col-span-8">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
+          <p class="text-green-500"><%= notice %></p>
+          <p class="text-red-500"><%= alert %></p>
           <%= yield %>
         </div>
       <% else %>
         <div class="col-start-2 col-span-10">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
+          <p class="text-green-500"><%= notice %></p>
+          <p class="text-red-500"><%= alert %></p>
           <%= yield %>
         </div>
       <% end %>

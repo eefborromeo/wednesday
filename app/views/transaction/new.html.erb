@@ -4,23 +4,24 @@
         <h2 class="text-xl">Asset Information:</h2>
         <div>
             <h3 class="text-3xl font-bold"><%= @asset_info[:company_name] %></h3>
-            <h3 class="text-2xl"><%= @asset.asset_name %></h3>
-            <h3 class="text-2xl">CEO: <%= @asset_info[:ceo] %></h3>
-            <h3 class="text-xl">Latest Price: <%= @asset_info[:price] %></h3>
+            <h3 class="text-2xl text-amber-500"><%= @asset.asset_name %></h3>
+            <h3 class="text-2xl">Latest Price: <%= @asset_info[:price] %></h3>
         </div>
         <%= form_with model: @transaction, url: transaction_index_path, class: "flex flex-col text-center gap-2" do |form| %>
             <%= form.hidden_field :asset_id, value: @asset.id %>
             <%= form.hidden_field :company_name, value: @asset_info[:company_name] %>
             <%= form.hidden_field :asset_name, value: @asset.asset_name %>
             <%= form.hidden_field :asset_price, value: @asset_info[:price] %>
-            <%= form.label :shares, "Shares:", class: "text-left" %>
+            <%= form.label :shares, "Shares:", class: "text-left text-2xl" %>
             <%= form.number_field :shares, step: :any, class: "w-full rounded-md text-black" %>
-            <%= form.submit "Buy Shares", class: "bg-amber-500 p-3 rounded-lg self-end" %>
+            <%= form.submit "Buy Shares", class: "bg-amber-500 p-3 rounded-lg self-end cursor-pointer hover:text-black" %>
         <% end %>
     </div>
     <div class="bg-black rounded-md p-5">
         <h2 class="mb-7">Total Shares</h2>
         <h3 class="text-6xl text-center"><%= @asset.total_shares %></h3>
+        <p>Balance:</p>
+        <p class="text-5xl text-center pt-5">$<%= number_with_precision(current_user.money, precision: 2, delimiter: ",").truncate(12) %></p>
     </div>
     <div class="col-start-1 col-end-3 bg-black rounded-md p-5 self-start">
         <h2 class="mb-5">Latest Headlines</h2>
