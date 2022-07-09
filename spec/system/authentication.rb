@@ -13,4 +13,12 @@ RSpec.describe "Login followed by logout", type: :feature do
         click_on "Sign Out"
         expect(page).to have_content('Signed out successfully.')
     end
+
+    scenario 'with incorrect details' do
+        visit new_user_session_path
+        fill_in "Email", with: confirmed_user.email
+        fill_in "Password", with: '123456'
+        click_on "Login"
+        expect(page).to have_content('Invalid Email or password.')
+    end
 end
