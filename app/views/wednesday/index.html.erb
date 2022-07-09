@@ -18,12 +18,12 @@
     <p class="text-7xl text-center">$<%= number_with_precision(@user.money, precision: 2, delimiter: ",") %></p>
     <%= link_to 'Edit balance', edit_user_money_path(current_user), :class => "block text-xl text-right" %>
   </div>
-  <h2 class="col-span-4 text-3xl text-amber-500">Popular Assets</h2>
+  <h2 class="col-span-4 text-3xl text-amber-500">10 Most Active Assets</h2>
   <% @assets.each do |asset| %>
     <div class="col-span-1 bg-black rounded-md p-4 drop-shadow h-48">
-      <div> <%= asset[:company_name] %> </div>
-      <div class="text-amber-500"> <%= asset[:name] %> </div>
-      <div> <%= asset[:price] %> </div>
+      <h2 class="text-xl"><%= asset.company_name %></h2>
+      <h3 class="text-amber-500"> <%= asset.symbol %> </h3>
+      <h6>Latest Price: <%= asset.latest_price %></h6>
     </div>
   <% end %>
 </div>
