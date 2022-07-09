@@ -35,8 +35,6 @@ class Asset < ApplicationRecord
     end
 
     def check_asset_name_validity
-        unless Asset.iex_api.company(self.asset_name).company_name?
-            throw :abort
-        end
+        Asset.iex_api.company(self.asset_name).company_name
     end
 end
