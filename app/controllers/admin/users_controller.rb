@@ -31,9 +31,9 @@ class Admin::UsersController < ApplicationController
 
     def update
         if @trader.update(trader_params)
-            redirect_to admin_user_path(@trader)
+            redirect_to admin_user_path(@trader), notice: "You have successfully updated #{@trader.username}'s details"
         else
-            render :edit
+            redirect_to edit_admin_user_path, alert: "#{@trader.errors.first.message}"
         end
     end
 
