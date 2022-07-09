@@ -17,9 +17,9 @@ class UserController < ApplicationController
 
   def update_money
     if @user.update(user_params)
-      redirect_to root_path
+      redirect_to root_path, notice: "You have successfully updated your balance."
     else
-      render :edit
+      redirect_to edit_user_money_path(current_user), alert: "#{@user.errors.first.message}"
     end
   end
 
