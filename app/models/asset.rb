@@ -24,6 +24,15 @@ class Asset < ApplicationRecord
         Asset.iex_api.stock_market_list(:mostactive)
     end
 
+    def self.get_historical_prices(asset_name)
+        history = []
+        historical_data = Asset.iex_api.historical_prices(asset_name)
+        historical_data.each do |each|
+            history << [each.date, each.high.to_i]
+        end
+        history
+    end
+
     private
 
     def self.iex_api
