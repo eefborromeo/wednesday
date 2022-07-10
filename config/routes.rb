@@ -10,6 +10,13 @@ Rails.application.routes.draw do
     resources :transactions, only:[:index]
   end
 
+  namespace :charts do
+    get 'new_users'
+    get 'all_completed_transactions'
+  end
+  
+  get 'charts/asset_specific_transactions/:asset_name', to: 'charts#asset_specific_transactions', as: 'asset_specific_transactions'
+
   resources :user, only: [:edit, :update]
 
   get '/user/:id/edit/money', to: 'user#edit_money', as: 'edit_user_money'
