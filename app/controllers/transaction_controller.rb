@@ -5,6 +5,7 @@ class TransactionController < ApplicationController
         approved(root_path)
         @q = current_user.transactions.ransack(params[:q])
         @transactions = @q.result.order(created_at: :desc)
+        @all_transactions = current_user.transactions.all
     end
 
     def new
