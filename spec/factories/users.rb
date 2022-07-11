@@ -1,10 +1,10 @@
 FactoryBot.define do
     factory :user do
-      sequence(:email) { |n| "wedtrader#{n}@wednestrade.com" }
-      password { "wedtrade" }
-      sequence(:username) { |n| "trader#{n}" }
-      first_name { "John" }
-      last_name { "Doe" }
+      email { Faker::Internet.unique.email }
+      password { Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true) }
+      username { Faker::Internet.unique.username(specifier: 1...15) }
+      first_name { Faker::Name.unique.first_name }
+      last_name { Faker::Name.unique.last_name }
       confirmed_at { nil }
 
       trait :admin do
