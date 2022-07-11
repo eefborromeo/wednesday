@@ -20,7 +20,7 @@ class TransactionController < ApplicationController
         if @transaction.save
             redirect_to transaction_index_path, notice: "You have successfully bought #{@transaction.shares} shares of #{@transaction.asset_name}."
         else
-            redirect_to asset_index_path, alert: "#{@transaction.errors[:base][0]}"
+            redirect_to asset_index_path, alert: "#{@transaction.errors.first.message}"
         end
     end
 

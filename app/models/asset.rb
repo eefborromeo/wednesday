@@ -4,6 +4,7 @@ class Asset < ApplicationRecord
     before_save :upcase_asset_name, :check_asset_name_validity
 
     validates :asset_name, 
+                presence: true,
                 uniqueness: { 
                     scope: :user_id,
                     case_sensitive: false,
