@@ -11,11 +11,18 @@
         </div>
       </div>
       <div class='submit-btn'>
-        <%= f.submit name: '', class: "bg-amber-500 p-2 py-1 rounded cursor-pointer, hover:text-black" %>
+        <%= f.submit name: '', class: "bg-amber-500 p-2 py-1 rounded cursor-pointer hover:text-black" %>
       </div>
     </div>
   <% end %>
 </div>
+<% if @users.count > 2 %>
+  <div class="text-2xl"> New user sign up chart </div>
+  <div class="bg-black w-full rounded-lg mb-5 p-3">
+    <%= line_chart charts_new_users_path, colors: ["rgb(245, 158, 11)"], xtitle: "Day", ytitle: "Sign-ups" %>
+  </div>
+<% end %>
+<div class="text-2xl"> All users list </div>
 <table class="bg-black w-full table-auto rounded-lg">
   <thead class="text-left border-b">
   <tr>

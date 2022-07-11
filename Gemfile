@@ -66,3 +66,4 @@ gem 'rubocop', require: false
 gem 'ransack'
 gem 'chartkick'
 gem "tailwindcss-rails", "~> 2.0"
+gem 'groupdate'

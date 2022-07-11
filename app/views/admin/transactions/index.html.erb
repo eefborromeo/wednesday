@@ -8,6 +8,13 @@
         </div>
     <% end %>
 </div>
+<% if @all_transactions.count > 2 %>
+  <div class="text-2xl">Completed transactions chart</div>
+  <div class="bg-black w-full rounded-lg mb-5 p-3">
+    <%= column_chart charts_all_completed_transactions_path, colors: ["rgb(245, 158, 11)"], xtitle: "Day", ytitle: "Transactions", library: { hAxis: { format: 'MM/dd' } } %>
+  </div>
+<% end %>
+<div class="text-2xl">All transactions list</div>
 <div>
     <table class="bg-black w-full table-auto rounded-lg">
         <thead class="text-left border-b">

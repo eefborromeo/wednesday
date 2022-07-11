@@ -5,11 +5,13 @@ class Admin::UsersController < ApplicationController
     def index
         @q = User.where(admin: false).ransack(params[:q])
         @traders = @q.result.order(created_at: :asc)
+        @users = User.where(admin: false)
     end
 
     def show
         @q = @trader.transactions.ransack(params[:q])
         @transactions = @q.result.order(created_at: :asc)
+        @all_transactions = @trader.transactions.all
     end
 
     def new

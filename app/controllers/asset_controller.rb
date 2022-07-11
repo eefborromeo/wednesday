@@ -7,8 +7,10 @@ class AssetController < ApplicationController
     
     def show
         @asset_info = Asset.get_asset_info(@asset.asset_name)
-        @q = Transaction.where(asset_name: @asset.asset_name).ransack(params[:q])
+        @asset_history = Asset.get_historical_prices(@asset.asset_name)
+        @q = current_user.transactions.where(asset_name: @asset.asset_name).ransack(params[:q])
         @transactions = @q.result.order(created_at: :desc)
+        @asset_transactions = current_user.transactions.where(asset_name: @asset.asset_name)
     end
 
     def new
