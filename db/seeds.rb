@@ -29,9 +29,8 @@ trader1 = User.create(
   username: 'Rusk',
   first_name: 'Lance Kennard',
   last_name: 'Pallarca',
-  admin: false,
   approved: true,
-  money: 1000000.0
+  money: 100000.0
 )
 
 trader1.skip_confirmation!
@@ -45,8 +44,7 @@ trader2 = User.create(
   username: 'Mel',
   first_name: 'Eloisa',
   last_name: 'Borromeo',
-  admin: false,
-  approved: false,
+  approved: true,
   money: 0.0
 )
 
@@ -55,15 +53,14 @@ trader2.created_at = (rand*10).days.ago
 trader2.save
 
 trader3 = User.create(
-  email: 'gally@wednestrade.com',
-  password: 'wedtrade',
+  email: Faker::Internet.unique.email,
+  password: "wedtrade",
   password_confirmation: 'wedtrade',
-  username: 'beb@ng',
-  first_name: 'Shalyn',
-  last_name: 'Gallano',
-  admin: false,
-  approved: true,
-  money: 300000.0
+  username: Faker::Internet.unique.username(specifier: 1...15),
+  first_name: Faker::Name.unique.first_name,
+  last_name: Faker::Name.unique.last_name,
+  approved: [true, false].sample,
+  money: Faker::Number.decimal(l_digits: 5, r_digits: 2)
 )
 
 trader3.skip_confirmation!
@@ -71,15 +68,14 @@ trader3.created_at = (rand*10).days.ago
 trader3.save
 
 trader4 = User.create(
-  email: 'patSlence@wednestrade.com',
-  password: 'wedtrade',
+  email: Faker::Internet.unique.email,
+  password: "wedtrade",
   password_confirmation: 'wedtrade',
-  username: 'slence',
-  first_name: 'Patrick',
-  last_name: 'Samson',
-  admin: false,
-  approved: true,
-  money: 40000.0
+  username: Faker::Internet.unique.username(specifier: 1...15),
+  first_name: Faker::Name.unique.first_name,
+  last_name: Faker::Name.unique.last_name,
+  approved: [true, false].sample,
+  money: Faker::Number.decimal(l_digits: 5, r_digits: 2)
 )
 
 trader4.skip_confirmation!
@@ -87,15 +83,14 @@ trader4.created_at = (rand*10).days.ago
 trader4.save
 
 trader5 = User.create(
-  email: 'sy.feydaniel@wednestrade.com',
-  password: 'wedtrade',
+  email: Faker::Internet.unique.email,
+  password: "wedtrade",
   password_confirmation: 'wedtrade',
-  username: 'feysyy',
-  first_name: 'Fey Daniel',
-  last_name: 'Sy',
-  admin: false,
-  approved: true,
-  money: 50000.0
+  username: Faker::Internet.unique.username(specifier: 1...15),
+  first_name: Faker::Name.unique.first_name,
+  last_name: Faker::Name.unique.last_name,
+  approved: [true, false].sample,
+  money: Faker::Number.decimal(l_digits: 5, r_digits: 2)
 )
 
 trader5.skip_confirmation!

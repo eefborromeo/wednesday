@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 2333f9ee4a4e1d8329e19f9e4b07e927648add7c
+  branch: master
+  specs:
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -82,6 +90,7 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    database_rewinder (0.9.8)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -326,8 +335,10 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   chartkick
+  database_rewinder
   devise
   factory_bot_rails
+  faker!
   groupdate
   iex-ruby-client
   listen (~> 3.3)

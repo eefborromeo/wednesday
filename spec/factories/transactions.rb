@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :transaction do
-    sequence(:user_email) { |n| "wedtrader#{n}@wednestrade.com" }
+    user_email { Faker::Internet.unique.email }
     company_name { "Microsoft Corporation" }
     asset_name { "MSFT" }
-    asset_price { rand(1.00...10000.00) }
-    shares { rand(1.00...100.00) }
+    asset_price { Faker::Number.between(from: 0.1, to: 1000.0) }
+    shares { Faker::Number.between(from: 0.1, to: 10.0) }
     transaction_total { asset_price * shares }
     association :user
 
