@@ -65,4 +65,11 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers
   config.include FactoryBot::Syntax::Methods
 
+  config.before(:suite) do
+    DatabaseRewinder.clean_all
+  end
+
+  config.after(:each) do
+    DatabaseRewinder.clean
+  end
 end
