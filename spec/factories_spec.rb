@@ -1,6 +1,6 @@
 require "rails_helper"
 
-EXCLUDED = []
+EXCLUDED = [:invalid_asset, :numerical_asset]
 
 FactoryBot.factories.map(&:name).each do |factory_name|
   describe "the #{factory_name} factory" do

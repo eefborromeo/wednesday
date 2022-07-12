@@ -17,11 +17,12 @@ FactoryBot.define do
     end
 
     trait :invalid_attr do
-      asset_name { "wrongassetsymbol" }
+      user_email { nil }
+      shares { "string" }
+      transaction_total { nil }
     end
 
     factory :buy_transac, traits: [:buy]
     factory :sell_transac, traits: [:sell]
-
   end
 end
