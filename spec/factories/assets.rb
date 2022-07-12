@@ -1,10 +1,17 @@
 FactoryBot.define do
   factory :asset do
-    asset_name { "MSFT" }
     association :user
+    asset_name { "MSFT" }
 
-    trait :invalid_attr do
-      asset_name { "wrongassetsymbol" }
+    trait :invalid_asset_name do
+      asset_name { "deliberatelywrongassetsymbol" }
     end
+
+    trait :numerical_asset_name do
+      asset_name { 1 }
+    end
+
+    factory :invalid_asset, traits: [:invalid_asset_name]
+    factory :numerical_asset, traits: [:numerical_asset_name]
   end
 end
