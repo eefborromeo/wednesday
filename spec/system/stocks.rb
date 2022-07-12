@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe "Buying, selling, viewing stocks", type: :system do
     let(:confirmed_and_approved_user) { create(:full_access_user) }
     let(:confirmed_user) { create(:confirmed_user) }
-
     
     context "confirmed and approved user" do
         before do
@@ -14,12 +13,27 @@ RSpec.describe "Buying, selling, viewing stocks", type: :system do
         end
 
         scenario "viewing stocks" do
-            click_on "Portfolio"
+            expect(page).to have_content("You have successfully added JBFCF to your portfolio")
             expect(page).to have_content("JBFCF")
             click_on "JBFCF"
             expect(page).to have_content("Jollibee Foods Corp.")
             expect(page).to have_content("JBFCF high market price for the last month")
             expect(page).to have_content("Latest Headlines")
+        end
+
+        scenario "buying and selling stocks" do
+            click_on "Buy Shares"
+            fill_in "Shares", with: "5"
+            click_on "Buy Shares"
+            expect(page).to have_content("You have successfully bought 5.0 shares of JBFCF.")
+            expect(page).to have_content("Transactions")
+            expect(page).to have_content("All transactions list")
+            sleep(3)
+            click_on "Portfolio"
+            click_on "Sell Shares"
+            fill_in "Shares", with: "3"
+            click_on "Sell Shares"
+            expect(page).to have_content("You have successfully sold 3.0 shares of JBFCF.")
         end
     end
 
