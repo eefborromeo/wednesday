@@ -14,11 +14,11 @@ class User < ApplicationRecord
   
   validates :first_name,
               presence: true,
-              format: { with: /\A[a-zA-Z ]*\z/i, message: "First name only allows letters" }
+              format: { with: /\A[^0-9`!@#\$%\^&*+_=]+\z/i, message: "First name only allows letters" }
 
   validates :last_name,
               presence: true,
-              format: { with: /\A[a-zA-Z ]*\z/i, message: "Last name only allows letters" }
+              format: { with: /\A[^0-9`!@#\$%\^&*+_=]+\z/i, message: "Last name only allows letters" }
 
   before_save :capitalize_name            
   after_update_commit :send_approval_email, if: :approved?
