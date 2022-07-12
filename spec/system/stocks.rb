@@ -12,7 +12,7 @@ RSpec.describe "viewing, buying, and selling stocks", type: :system do
             click_on "Add"
         end
 
-        scenario "viewing stocks" do
+        it "will show stock information when viewing stocks" do
             expect(page).to have_content("You have successfully added JBFCF to your portfolio")
             expect(page).to have_content("JBFCF")
             click_on "JBFCF"
@@ -21,7 +21,7 @@ RSpec.describe "viewing, buying, and selling stocks", type: :system do
             expect(page).to have_content("Latest Headlines")
         end
 
-        scenario "buying and selling stocks" do
+        it "will be buying and selling stocks" do
             click_on "Buy Shares"
             fill_in "Shares", with: "5"
             click_on "Buy Shares"
@@ -45,7 +45,7 @@ RSpec.describe "viewing, buying, and selling stocks", type: :system do
             click_on "Add"
         end
 
-        scenario "viewing stocks" do
+        it "will show stock information when viewing stocks" do
             expect(page).to have_content("You have successfully added JBFCF to your portfolio")
             expect(page).to have_content("JBFCF")
             click_on "JBFCF"
@@ -54,7 +54,7 @@ RSpec.describe "viewing, buying, and selling stocks", type: :system do
             expect(page).to have_content("Latest Headlines")
         end
         
-        scenario "buying and selling stock" do
+        it "will not be buying and selling stock when unapproved" do
             click_on "Buy Shares"
             expect(page).to have_content("Your account must be approved to access this area.")
             expect(page).not_to have_content("Sell Shares")

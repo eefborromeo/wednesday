@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Login followed by logout", type: :system do
     let(:user) { create(:confirmed_user) }
     
-    scenario 'with correct details' do
+    it 'logs in with correct details' do
         visit new_user_session_path
         fill_in "Email", with: user.email
         fill_in "Password", with: user.password
@@ -16,7 +16,7 @@ RSpec.describe "Login followed by logout", type: :system do
         expect(page).to have_content('Signed out successfully.')
     end
     
-    scenario 'with incorrect details' do
+    it 'does not login with incorrect details' do
         visit new_user_session_path
         fill_in "Email", with: "email@email.com"
         fill_in "Password", with: '123456'

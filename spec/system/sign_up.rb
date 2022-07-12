@@ -7,7 +7,7 @@ RSpec.describe "Sign up", type: :system do
     let(:email) { Faker::Internet.email }
     let(:password) { Faker::Internet.password(min_length: 6) }
 
-    scenario "with valid details" do
+    it "will sign a user up with valid details" do
         visit root_path
         click_on "Sign up"
         sleep(3)
@@ -28,7 +28,7 @@ RSpec.describe "Sign up", type: :system do
             visit new_user_registration_path
         end
         
-        scenario "blank fields" do
+        it "will have a validation error when it has blank fields" do
             fill_in "Username", with: ""
             fill_in "First name", with: ""
             fill_in "Last name", with: ""
@@ -40,7 +40,7 @@ RSpec.describe "Sign up", type: :system do
             expect(message).to eq "Please fill out this field."
         end
 
-        scenario "incorrect password confirmation" do
+        it "will throw an error when it has incorrect password confirmation" do
             fill_in "Username", with: username
             fill_in "First name", with: first_name
             fill_in "Last name", with: last_name
@@ -51,7 +51,7 @@ RSpec.describe "Sign up", type: :system do
             expect(page).to have_content("Password confirmation doesn't match Password")
         end
 
-        scenario "invalid email" do
+        it "will throw a validation error when it is an invalid email" do
             fill_in "Username", with: username
             fill_in "First name", with: first_name
             fill_in "Last name", with: last_name
@@ -63,7 +63,7 @@ RSpec.describe "Sign up", type: :system do
             expect(message).to eq "Please include an '@' in the email address. 'email' is missing an '@'."
         end
 
-        scenario "too short password" do
+        it "will throw an error when the password is too short" do
             fill_in "Username", with: username
             fill_in "First name", with: first_name
             fill_in "Last name", with: last_name
