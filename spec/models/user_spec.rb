@@ -26,8 +26,8 @@ RSpec.describe User, type: :model do
 
   context "upon creation" do
     it "runs devise send confirmation method" do
-      fresh_user = create(:user)
-      expect { fresh_user.send_confirmation_instructions }. to change(Devise.mailer.deliveries, :count).by(1)
+      fresh_user = build(:user)
+      expect { fresh_user.save }.to change(Devise.mailer.deliveries, :count).by(1)
     end
 
     describe "username" do

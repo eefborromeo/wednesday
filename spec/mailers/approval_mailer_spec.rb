@@ -6,13 +6,13 @@ RSpec.describe ApprovalMailer, type: :mailer do
     let(:mail) { ApprovalMailer.trader_approved(user) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Trader approval")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["wednesday@gmail.com"])
+      expect(mail.subject).to eq "Trader approval"
+      expect(mail.to[0]).to eq user.email
+      expect(mail.from[0]).to eq "wednesday@gmail.com"
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Greetings")
+      expect(mail.body.encoded).to match "Thank you again for joining the Wednesday community! Our admins have approved your account." 
     end
   end
 
