@@ -4,6 +4,7 @@ RSpec.describe "Admin functionalities", type: :system do
     let(:admin) { create(:admin_user) }
     let(:trader_confirmed) { build(:confirmed_user) }
     let(:trader) { build(:full_access_user) }
+    let(:unapproved) { User.where(approved: "false") }
     
     context "when admin interacts with user" do
         before do
@@ -45,13 +46,20 @@ RSpec.describe "Admin functionalities", type: :system do
     end
 
     context "when views all traders in the app" do
-        it "will show pending trader sign up" do
+        before do
             user_sign_up
             login admin
+            find_link("Show trader", href: admin_user_path(unapproved[0].id)).click
         end
 
+        it "will show pending trader sign up" do
+            expect(page).to have_content('Status: Not approved')
+        end
+        
         it "will approve pending trader" do
-
+            expect(page).to have_content('Status: Not approved')
+            find(:css, "#user_approved").set(true)
+            expect(page).to have_content('Status: Approved')
         end
     end
 
