@@ -7,7 +7,7 @@
     <% if @assets.count == 0 %>
         <div> No assets yet </div>
     <% end %>
-
+    <div class="p-3"> Sort by:&emsp;<%= sort_link(@q, :created_at, "Date", class: "hover:text-amber-500", default_order: :asc) %> | <%= sort_link(@q, :asset_name, "Asset Symbol", class: "hover:text-amber-500", default_order: :asc) %> | <%= sort_link(@q, :total_shares, "Total Shares", class: "hover:text-amber-500", default_order: :asc) %> </div>
     <% @assets.each do |asset| %>
         <div class="bg-zinc-900 hover:bg-black mb-5 rounded-xl grid grid-cols-3 px-3 py-5 items-center">
             <h2 class="text-4xl"><%= link_to asset.asset_name, asset_path(asset.asset_name), class: 'hover:text-amber-500' %></h2>
