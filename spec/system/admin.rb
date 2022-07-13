@@ -1,16 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe "Admin functionalities", type: :system do
-    context "when creates new trader" do
+    let(:admin) { create(:admin_user) }
+    let(:trader) { build(:full_access_user) }
+    
+    context "when admin interacts with user" do
+        before do
+            login
+        end
 
-    end
-
-    context "when edits trader details" do
-
-    end
-
-    context "when views trader details" do
-
+        it "will create new trader" do
+            click_on "Create Trader"
+            fill_in "user_first_name", with: trader.first_name
+            fill_in "user_last_name", with: trader.last_name
+            fill_in "user_username", with: trader.username
+            fill_in "user_email", with: trader.email
+            fill_in "user_password", with: trader.password
+            click_on "Create User"
+            expect(current_path).to eq(admin_users_path) 
+            expect(page).to have_content("Dashboard")
+            page.find('table')
+            page.find('td', text: trader.email)
+        end
+    
+        it "will edit trader details" do
+        end
+    
+        it "will view trader details" do
+        end
     end
 
     context "when views all traders in the app" do
@@ -25,5 +42,15 @@ RSpec.describe "Admin functionalities", type: :system do
 
     context "when view all transactions" do
 
+    end
+
+    private
+    
+    def login
+        visit new_user_session_path
+        fill_in "Email", with: admin.email
+        fill_in "Password", with: admin.password
+        click_button "Log in"
+        expect(current_path).to eq(admin_users_path)
     end
 end
