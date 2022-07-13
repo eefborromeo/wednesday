@@ -1,4 +1,4 @@
-# **Wednesday**
+# **[Wednesday](https://wednesday-trading.herokuapp.com/)**
 
 [![wednesday-app.png](https://i.postimg.cc/rwLC7J29/wednesday-app.png)](https://postimg.cc/HVByybxJ)
 
@@ -19,10 +19,15 @@ Ruby 3.1.2
 * PostgreSQL 14.2
 
 ## Featured Gems
-* gem 'simple_calendar'
+* gem 'iex-ruby-client'
 * gem 'devise'
 * gem 'ransack'
+* gem 'chartkick'
+* gem 'groupdate'
+* gem 'tailwind-css'
 * gem 'rspec-rails'
+* gem 'faker'
+* gem 'database-rewinder'
 
 ## Configuration
 
@@ -56,7 +61,6 @@ git push heroku <branch name>
 heroku run rails db:migrate
 heroku run rails db:seed
 ```
-
 -----------
 
 Fair Use
