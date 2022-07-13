@@ -15,7 +15,7 @@
   </div>
   <div class="col-span-2 bg-black rounded-md p-4 drop-shadow h-64 flex flex-col justify-between">
     <p>Balance:</p>
-    <p class="text-7xl text-center">$<%= number_with_precision(@user.money, precision: 2, delimiter: ",").truncate(12) %></p>
+    <p class="text-7xl text-center">$<%= number_with_precision(@user.money, precision: 2, delimiter: ",").truncate(10) %></p>
     <%= link_to 'Edit balance', edit_user_money_path(current_user), :class => "block text-xl text-right" %>
   </div>
   <h2 class="col-span-4 text-3xl text-amber-500">10 Most Active Assets</h2>
