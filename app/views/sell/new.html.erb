@@ -19,7 +19,7 @@
         <h2 class="mb-7">Total Shares</h2>
         <h3 class="text-6xl text-center"><%= @asset.total_shares %></h3>
         <p>Balance:</p>
-        <p class="text-5xl text-center pt-5">$<%= number_with_precision(current_user.money, precision: 2, delimiter: ",").truncate(12) %></p>
+        <p class="text-5xl text-center pt-5">$<%= number_with_precision(current_user.money, precision: 2, delimiter: ",").truncate(10) %></p>
     </div>
     <div class="col-start-1 col-end-3 bg-black rounded-md p-5 self-start">
         <h2 class="mb-5">Latest Headlines</h2>

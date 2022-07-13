@@ -2,7 +2,8 @@ class AssetController < ApplicationController
     before_action :set_asset, only: [:show, :destroy]
 
     def index
-        @assets = current_user.assets
+        @q = current_user.assets.ransack(params[:q])
+        @assets = @q.result.order(updated_at: :desc)
     end
     
     def show
