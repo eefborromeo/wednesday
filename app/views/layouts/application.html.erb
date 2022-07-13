@@ -20,7 +20,7 @@
             <% unless current_user.admin? %>
               <%= link_to 'Edit Profile', edit_user_path(current_user), class: "hover:text-amber-500" %>
             <% end %>
-            <%= button_to "Sign Out", destroy_user_session_path, class: "hover:text-red-500", method: :delete %>
+            <%= button_to "Sign Out", destroy_user_session_path, class: "hover:text-red-500 cursor-pointer", method: :delete %>
           </div>
         <% end %>
       </header>
