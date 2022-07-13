@@ -10,7 +10,7 @@
 <div class="grid grid-cols-4 gap-5">
   <div class="col-span-2 bg-black rounded-md p-4 drop-shadow h-64 flex flex-col justify-between">
       <h6>Welcome, <%= @user.first_name %> <%= @user.last_name %>!</h6>
-      <p class="text-7xl text-center"><%=Time.now.strftime("%I:%M %p") %></p>
+      <p id="time" class="text-7xl text-center"></p>
       <p class="text-3xl text-right"><%= Date.current.strftime("%B %d, %Y") %></p>
   </div>
   <div class="col-span-2 bg-black rounded-md p-4 drop-shadow h-64 flex flex-col justify-between">
@@ -27,3 +27,5 @@
     </div>
   <% end %>
 </div>
+
+<%= javascript_pack_tag 'time' %>
