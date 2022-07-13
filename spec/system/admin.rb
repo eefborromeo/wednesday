@@ -5,7 +5,7 @@ RSpec.describe "Admin functionalities", type: :system do
     let(:trader_confirmed) { build(:confirmed_user) }
     let(:trader) { build(:full_access_user) }
     let(:unapproved) { User.where(approved: "false") }
-    
+
     context "when admin interacts with user" do
         before do
             login admin
@@ -62,11 +62,7 @@ RSpec.describe "Admin functionalities", type: :system do
             expect(page).to have_content('Status: Approved')
         end
     end
-
-    context "when view all transactions" do
-
-    end
-
+    
     private
     
     def login(user)
