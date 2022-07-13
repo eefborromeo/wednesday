@@ -24,9 +24,20 @@ RSpec.describe "Admin functionalities", type: :system do
         end
     
         it "will edit trader details" do
+            expect(page).to have_content("Dashboard")
+            page.find('table')
+            click_on "Show trader"
+            click_on "Edit details"
+            fill_in "user_money", with: "5000"
+            expect(page).to have_content(`'You have successfully updated #{trader.username}'s details'`)
+            expect(page).to have_content(`'Balance: 5000.0'`)
         end
-    
+        
         it "will view trader details" do
+            expect(page).to have_content("Dashboard")
+            page.find('table')
+            click_on "Show trader"
+            expect(page).to have_content(`'Name: #{trader.first_name} #{trader.last_name}'`)
         end
     end
 
