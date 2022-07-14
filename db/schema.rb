@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2022_07_07_124938) do
 
   create_table "assets", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "asset_name"
+    t.string "asset_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "total_shares", default: "0.0"
