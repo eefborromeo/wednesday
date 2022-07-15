@@ -8,7 +8,7 @@ RSpec.describe ApprovalMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.subject).to eq "Trader approval"
       expect(mail.to[0]).to eq user.email
-      expect(mail.from[0]).to eq "wednesday@gmail.com"
+      expect(mail.from[0]).to eq "wednesday.trading.rails@gmail.com"
     end
 
     it "renders the body" do
